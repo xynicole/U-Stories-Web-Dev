@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>
+            Writelet{% if page_title %}: {{page_title}} {% endif %}
+        </title>
+        <link rel="stylesheet" href="{{ url_for('static',filename='styles/base.css') }}">
+        {% block styles %}{% endblock %}
+
+    </head>
+    <body>
+        <header>
+            <div class="header">
+                <div class="logo">
+                    <p>
+                        Writelet
+                    </p>
+                </div>
+                <div class="boxes">
+                    {% block navbuttons %}{% endblock %}
+                </div>
+            </div>
+        </header>
+
+        <section>
+
+            <div class="bulk">
+                <div class="body">
+                    {% block content %}{% endblock %}
+                </div>
+            </div>
+            
+        </section>
+    </body>
+</html>

@@ -1,0 +1,14 @@
+{% extends '_base.html' %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{{ url_for('static',filename='styles/index.css') }}">
+{% endblock %}
+
+{% block navbuttons %}
+    <button type="button" class="header" onclick="location.href='homepage.html';">Login</button>
+    <button type="button" class="header">Sign Up</button>
+{% endblock %}
+
+{% block content %}
+    this is working
+{% endblock %}
