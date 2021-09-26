@@ -1,0 +1,25 @@
+#story-text {
+    resize: none;
+    margin: 3vh 3vw;
+    width: 87vw;
+    height: 66vh;
+    font-size: 28px;
+    background: #DFDCED;
+    border: none;
+    border-radius: 5px;
+}
+
+#text-container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+#submit-button {
+    width: 15vw;
+    height: 10vh;
+    font-size: 40px;
+    border: none;
+    background: #DFDCED;
+    border-radius: 10px;
+}

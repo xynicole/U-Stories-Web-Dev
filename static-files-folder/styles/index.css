@@ -1,0 +1,26 @@
+#index {
+    width: 100%;
+    font-size: 24px;
+    margin: 3vh 3vw;
+}
+
+#user-functions {
+    width: 100%;
+}
+
+#user-functions {
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+}
+
+td {
+    width: 33%;
+}
+
+#text-right {
+    text-align: right;
+}
+
+#text-center {
+    text-align: center;
+}

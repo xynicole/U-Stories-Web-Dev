@@ -1,0 +1,26 @@
+{% extends '_base.html' %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{{ url_for('static',filename='styles/login-signup-base.css') }}">
+{% endblock %}
+
+{% block content %}
+    <div id="center">
+        <div id="spacer">
+            <form method="post" action="/sendpost">
+                <div id="user-pass-text">
+                    {% block user %}{% endblock %} Username:
+                </div>
+                <input type="text" name="username" id="user-pass-input">
+                <div id="user-pass-text">
+                    {% block pass %}{% endblock %} Password:
+                </div>
+                <input type="password" name="password" id="user-pass-input">
+            </form>
+        </div>
+        <div id="test">
+            <input type="submit" value="{% block logsig %}{% endblock %}" id="submit-button" onclick="location.href='/p/homepage.html';">
+            <button type="button" id="submit-button" onclick="location.href='/p/index.html';">Cancel</button>
+        </div>
+    </div>
+{% endblock %}

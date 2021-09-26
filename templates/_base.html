@@ -3,8 +3,9 @@
 <html>
     <head>
         <title>
-            Writelet{% if page_title %}: {{page_title}} {% endif %}
+            U Stories
         </title>
+        <link rel="icon" href="{{ url_for('static',filename='images/U-Logo.png') }}" type="image/png"/>
         <link rel="stylesheet" href="{{ url_for('static',filename='styles/base.css') }}">
         {% block styles %}{% endblock %}
 
@@ -14,7 +15,7 @@
             <div class="header">
                 <div class="logo">
                     <p>
-                        Writelet
+                        U Stories{% block page %}{% endblock %}
                     </p>
                 </div>
                 <div class="boxes">
