@@ -10,10 +10,20 @@
 {% endblock %}
 
 {% block content %}
-    <div id="text-container">
-        <textarea id="story-text"></textarea>
-        <div id="submit-story">
-            <input type="submit" value="Submit Story" id="submit-button" onclick="location.href='/p/homepage.html';">
-        </div>
+    <div id="all-container">
+        <form method="post" action="/create-story">
+            <div id="title-container">
+                <h2>Title:</h2>
+                <input name="title" id="title"></input>
+            </div>
+            <div name="text" id="text-container">
+                
+                <textarea id="story-text"></textarea>
+                <div id="submit-story">
+                    <input type="submit" value="Submit Story" id="submit-button" onclick="location.href='/p/homepage.html';">
+                </div>
+            </div>
+        </form>
     </div>
+
 {% endblock %}
