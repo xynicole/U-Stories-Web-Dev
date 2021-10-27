@@ -1,0 +1,29 @@
+{% extends '_base.html" %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{{ url_for('static',filename='styles/write-story.css') }}">
+{% endblock %}
+
+{% block navbuttons %}
+    <!--- <button type="button" class="header" onclick="location.href='/p/homepage.html';">Save Story</button> --->
+    <button type="button" class="header" onclick="location.href='/p/homepage.html';">Back to Homepage</button>
+{% endblock %}
+
+{% block content %}
+    <div id="all-container">
+        <form method="post" action="/create-story">
+            <div id="title-container">
+                <h2>Title:</h2>
+                <p name="title" id="received-title">{{ story_list['title'] }}</p>
+            </div>
+            <div id="text-container">
+                
+                <textarea name="text" id="story-text"></textarea>
+                <div id="submit-story">
+                    <input type="submit" value="Submit Story" id="submit-button" onclick="location.href='/p/homepage.html';">
+                </div>
+            </div>
+        </form>
+    </div>
+
+{% endblock %}

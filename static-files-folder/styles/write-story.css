@@ -39,3 +39,13 @@
     border: none;
     border-radius: 5px;
 }
+
+#received-title {
+    margin-left: 1vw;
+    width: 80vw;
+    font-size: 24px;
+    background: #DFDCED;
+    border: none;
+    border-radius: 5px;
+    text-align: left;
+}
