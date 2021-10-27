@@ -10,13 +10,14 @@ def create_new_story():
     # Grab title and text from HTML 
     title = flask.request.values['title']
     text = flask.request.values['text']
-    # entry = StoryEntry("test", title, text, False)
 
     story_list = create_story()
     story_list['author'] = 'test'
     story_list['title'] = title
     story_list['text'] = text
     story_list['is_finished'] = False
+    story_list['parent_id'] = story_list.id
+    story_list['child_id'] = 0
     
     update_entries(story_list)
     return flask.render_template('homepage.html')
