@@ -1,6 +1,7 @@
 import flask
 
-from datastore import *
+from datastore import create_story, update_entries
+from story_object import StoryEntry
 
 app = flask.Flask(__name__)
 
@@ -13,10 +14,17 @@ def root():
 def write_story():
     return flask.render_template('write-story.html')
 
-@app.route('/creat-story', methods=['POST', 'GET'])
+@app.route('/create-story', methods=['POST', 'GET'])
 def create_new_story():
     title = flask.request.values['title']
     text = flask.request.values['text']
+    entry = StoryEntry("test", title, text, False)
+    story_list = create_story()
+    story_list["entry"] = entry
+    update_entries(story_list)
+
+    return flask.render_template('homepage.html')
+    
 
 
 @app.route('/p/<requested_page>')
