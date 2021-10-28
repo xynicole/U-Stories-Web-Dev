@@ -38,6 +38,7 @@ function drop(id, evt) {
 
     if(optionId = "skip-story") {
         generateRandomText();
+        scroll(0,0);
     }   
     
     if(optionId = "accept-story") {

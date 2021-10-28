@@ -37,6 +37,12 @@
     padding: 6px;
 }
 
+#center-text {
+    text-align: center;
+    font-size: 24px;
+    height: 100px;
+}
+
 .accept-skip {
     margin-left: auto;
     margin-right: auto;
