@@ -41,9 +41,10 @@ def write_story():
 
 @app.route('/p/receive-story.html', methods=['POST', 'GET'])
 def receive_story():
-    id = flask.request.values['id']
-    datastore_story_entry = retrieve_story(id)
-    return flask.render_template('receive-story.html', story_list=datastore_story_entry)
+    # id = flask.request.values['id']
+    # datastore_story_entry = retrieve_story(id)
+    return flask.render_template('receive-story.html')
+    # Include -> , story_list=datastore_story_entry in above line when ready
 
 
 # Any page that is not specified will default here with no functionality

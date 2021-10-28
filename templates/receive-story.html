@@ -1,29 +1,42 @@
-{% extends '_base.html" %}
+{% extends '_base.html' %}
 
 {% block styles %}
-    <link rel="stylesheet" href="{{ url_for('static',filename='styles/write-story.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='styles/receive-story.css') }}">
+{% endblock %}
+
+{% block onload %}
+    onload="generateRandomText();"
 {% endblock %}
 
 {% block navbuttons %}
-    <!--- <button type="button" class="header" onclick="location.href='/p/homepage.html';">Save Story</button> --->
     <button type="button" class="header" onclick="location.href='/p/homepage.html';">Back to Homepage</button>
 {% endblock %}
 
 {% block content %}
+    <script type="text/javascript" src="{{ url_for('static',filename='js/choose_story.js') }}"></script>
+    
     <div id="all-container">
-        <form method="post" action="/create-story">
-            <div id="title-container">
-                <h2>Title:</h2>
-                <p name="title" id="received-title">{{ story_list['title'] }}</p>
+        <div id="story-and-accepter">
+
+            <!-- This is where the linked list of stories will be generated -->
+            <div id="stories"></div>
+        
+            <div class="accept-skip" ondrop="drop(this,event);" ondragover="allowDrop(event);">
+                Drag choice here!
             </div>
-            <div id="text-container">
-                
-                <textarea name="text" id="story-text"></textarea>
-                <div id="submit-story">
-                    <input type="submit" value="Submit Story" id="submit-button" onclick="location.href='/p/homepage.html';">
-                </div>
+        </div>
+
+        <div id="option-container">
+            <div id="skip-story" draggable="true" ondragstart="drag(this.id,event);">
+                <img width="300vw" src="{{ url_for('static',filename='images/skip.png') }}" border="0">
             </div>
-        </form>
+
+            <div id="accept-story" draggable="true" ondragstart="drag(this.id,event);">
+                <img width="300vw" src="{{ url_for('static',filename='images/accept.png') }}" border="0">
+            </div>
+        </div>
+        <p></p>
     </div>
+
 
 {% endblock %}

@@ -8,9 +8,9 @@
         <link rel="icon" href="{{ url_for('static',filename='images/U-Logo.png') }}" type="image/png"/>
         <link rel="stylesheet" href="{{ url_for('static',filename='styles/base.css') }}">
         {% block styles %}{% endblock %}
-
     </head>
-    <body>
+    
+    <body {% block onload %}{% endblock %}>
         <header>
             <div class="header">
                 <div class="logo">
