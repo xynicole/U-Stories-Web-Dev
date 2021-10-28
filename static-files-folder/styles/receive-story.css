@@ -38,7 +38,9 @@
 }
 
 #center-text {
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     font-size: 24px;
     height: 100px;
 }
@@ -47,9 +49,6 @@
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 2vh;
-    border: 2px dotted #804060;
-    width: 400px;
-    height: 200px;
-    padding-top: 60px;
-    text-align: center;
+    border: 2px ridge #804060;
+    width: 20vw;
 }
