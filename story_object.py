@@ -3,7 +3,7 @@ import datetime
 class StoryEntry():
 
     def __init__(self, author, story_title, story_text, is_finished, parent_id, child_id):
-        ''' Initializes a story entry, will be organized by the shared title between stories
+        ''' Initializes a story entry, will be organized via linked list essentially,
             Time is set to now, as a story entry will only be initialized when it is submitted by a user'''
 
         self.author = author

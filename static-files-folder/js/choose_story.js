@@ -1,7 +1,9 @@
-
+// The ID of the image that we are currently holding
+// So, either accept or skip
 let optionId;
 
 // Will be useless later, just to see if everything will work
+// Generates a table with mock users and stuff
 function generateRandomText() {
     let randomStories = "\
         <table id='story-table'>\
@@ -14,6 +16,7 @@ function generateRandomText() {
                     Title of the Story\
                 </th>\
             </tr>";
+    // Loops through a random number of times to create fake entries and appends them to the string
     for(i = 0; i < Math.random()*20+1; i++) {
         randomStories += "\
             <tr>\
@@ -30,27 +33,29 @@ function generateRandomText() {
     document.getElementById("stories").innerHTML = randomStories;
 }
 
+// Kind of similar to the example code
 function drop(id, evt) {
     evt.preventDefault();
     let draggedItem = document.getElementById(optionId);
 
-    //id.innerHTML = draggedItem.innerHTML;
-
+    // If story is skipped, generate another story and scroll the page back to the top
     if(optionId = "skip-story") {
         generateRandomText();
         scroll(0,0);
     }   
     
+    // Take story and load up another page similar to the create story, only without a title
+    // Keep the parent stories on page so that the user can refer to them while they are writing
     if(optionId = "accept-story") {
 
     }
 }
 
+// When we start to drag one of the options, update the variable to reflect that
 function drag(id,evt) {
     optionId = id;
 }
 
-// this will be called when we drag into our fence
 function allowDrop(evt) {
     evt.preventDefault();
 }
