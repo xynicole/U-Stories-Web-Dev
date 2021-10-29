@@ -4,6 +4,10 @@
     <link rel="stylesheet" href="{{ url_for('static',filename='styles/write-story.css') }}">
 {% endblock %}
 
+{% block onload %}
+    onload="setWordCounter();"
+{% endblock %}
+
 {% block navbuttons %}
     <!-- Save story would act similar to submit, except isFinished would be set to false once that actually works -->
     <button type="button" class="header" onclick="location.href='/p/homepage.html';">Save Story</button>
@@ -11,20 +15,25 @@
 {% endblock %}
 
 {% block content %}
+    
     <div id="all-container">
-        <form method="post" action="/create-story">
+        <form method="post" action="/create-story" onsubmit="return checkWordLimitAndWarn()">
             <div id="title-container">
                 <h2>Title:</h2>
                 <input name="title" id="title"></input>
             </div>
             <div id="text-container">
                 
-                <textarea name="text" id="story-text"></textarea>
+                <textarea id="story-text"></textarea>
+                <h2>Words: <span id="word-count">-</span> / 500</h2>
                 <div id="submit-story">
-                    <input type="submit" value="Submit Story" id="submit-button" onclick="location.href='/p/homepage.html';">
+                    <input type="submit" value="Submit Story" id="submit-button" onclick="if(checkWordLimit()){location.href='/p/homepage.html';}">
                 </div>
             </div>
         </form>
     </div>
+
+    <!-- Needs to be called underneath body because 'story-text' and 'word-count' need to exist before this is called -->
+    <script type="text/javascript" src="{{ url_for('static',filename='js/word_counter.js') }}"></script>
 
 {% endblock %}

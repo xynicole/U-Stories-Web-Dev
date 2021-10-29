@@ -24,8 +24,8 @@ function generateRandomText() {
                     author\
                 </td>\
                 <td>\
-                    this is an example of a story that could potentially be submitted. it is here mostly just to test length and output. so here is some text to test that output. \
-                    Wow all of these look exactly the same, that's kinda crazy, hopefully this makes sense during the presentation, oh well.\
+                    This is an example of a story that could potentially be submitted. it is here mostly just to test length and output. so here is some text to test that output. \
+                    Wow all of these look exactly the same, that's kinda crazy, hopefully this makes sense if we have to present it like this, oh well.\
                 </td>\
             </tr>";
     }
@@ -44,7 +44,7 @@ function drop(id, evt) {
         scroll(0,0);
     }   
     
-    // Take story and load up another page similar to the create story, only without a title
+    // Take story and load up another page similar to write-story.html, only without a title option
     // Keep the parent stories on page so that the user can refer to them while they are writing
     if(optionId = "accept-story") {
 
