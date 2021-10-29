@@ -4,10 +4,6 @@
     <link rel="stylesheet" href="{{ url_for('static',filename='styles/write-story.css') }}">
 {% endblock %}
 
-{% block onload %}
-    onload="setWordCounter();"
-{% endblock %}
-
 {% block navbuttons %}
     <!-- Save story would act similar to submit, except isFinished would be set to false once that actually works -->
     <button type="button" class="header" onclick="location.href='/p/homepage.html';">Save Story</button>
@@ -17,17 +13,17 @@
 {% block content %}
     
     <div id="all-container">
-        <form method="post" action="/create-story" onsubmit="return checkWordLimitAndWarn()">
+        <form method="post" action="/create-new-story" onsubmit="return checkEmptyAndWarn()">
             <div id="title-container">
                 <h2>Title:</h2>
-                <input name="title" id="title"></input>
+                <input name="title" id="title" maxlength="50"></input>
             </div>
             <div id="text-container">
                 
-                <textarea id="story-text"></textarea>
-                <h2>Words: <span id="word-count">-</span> / 500</h2>
+                <textarea name="story-text" id="story-text" maxlength="1500"></textarea>
+                <h2>Characters: <span id="word-count">-</span> / 1500</h2>
                 <div id="submit-story">
-                    <input type="submit" value="Submit Story" id="submit-button" onclick="if(checkWordLimit()){location.href='/p/homepage.html';}">
+                    <input type="submit" value="Submit Story" id="submit-button" onclick="if(!isEmpty()){location.href='/p/homepage.html';}">
                 </div>
             </div>
         </form>

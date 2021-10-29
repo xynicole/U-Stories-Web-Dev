@@ -1,33 +1,22 @@
 import flask
 
-from datastore import create_story, update_entries, retrieve_story
+from datastore import create_head_story, update_entries, retrieve_story, init_story_head, get_head_stories
 from story_object import StoryEntry
 
 app = flask.Flask(__name__)
 
-@app.route('/create-story', methods=['POST', 'GET'])
+@app.route('/create-new-story', methods=['POST', 'GET'])
 def create_new_story():
     # Grab title and text from HTML 
     title = flask.request.values['title']
-    text = flask.request.values['text']
+    text = flask.request.values['story-text']
+    author = 'user_name'
+    story_list = create_head_story()
 
-    story_list = create_story()
-    story_list['author'] = 'test'
-    story_list['title'] = title
-    story_list['text'] = text
-    story_list['is_finished'] = False
-    story_list['parent_id'] = story_list.id
-    story_list['child_id'] = 0
-    
+    init_story_head(story_list, author, title, text)
+
     update_entries(story_list)
     return flask.render_template('homepage.html')
-
-''' Probably don't actually need this method maybe
-@app.route('/get-story', methods=['POST', 'GET'])
-def get_story():
-    id = flask.request.values['id']
-    datastore_story_entry = retrieve_story(id)
-'''
 
 # ---------- Actual Web Pages Start Here ----------
 @app.route('/')
@@ -41,10 +30,14 @@ def write_story():
 
 @app.route('/p/receive-story.html', methods=['POST', 'GET'])
 def receive_story():
+    stories = get_head_stories()
+    return flask.render_template('receive-story.html', story_list=stories)
+
+@app.route('/p/confirm-receive-story.html', methods=['POST', 'GET'])
+def confirm_receive_story():
     # id = flask.request.values['id']
     # datastore_story_entry = retrieve_story(id)
-    return flask.render_template('receive-story.html')
-    # Include -> , story_list=datastore_story_entry in above line when ready
+    return flask.render_template('confirm-receive-story.html')
 
 
 # Any page that is not specified will default here with no functionality

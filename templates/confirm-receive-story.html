@@ -1,0 +1,43 @@
+{% extends '_base.html' %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{{ url_for('static',filename='styles/confirm-receive-story.css') }}">
+{% endblock %}
+
+{% block onload %}
+    onload="generateRandomText();"
+{% endblock %}
+
+{% block navbuttons %}
+    <button type="button" class="header" onclick="location.href='/p/homepage.html';">Back to Homepage</button>
+{% endblock %}
+
+{% block content %}
+    <script type="text/javascript" src="{{ url_for('static',filename='js/choose_story.js') }}"></script>
+    
+    <div id="all-container">
+        <div id="story-and-accepter">
+
+            <!-- This is where the linked list of stories will be generated -->
+            <div id="stories"></div>
+        
+            <div class="accept-skip" id="center-text" ondrop="drop(this,event);" ondragover="allowDrop(event);">
+                Drag choice here!
+            </div>
+        </div>
+
+        <!-- Options to skip or accept story -->
+        <div id="option-container">
+            <div id="skip-story" draggable="true" ondragstart="drag(this.id,event);">
+                <img width="300vw" src="{{ url_for('static',filename='images/skip.png') }}" border="0">
+            </div>
+
+            <div id="accept-story" draggable="true" ondragstart="drag(this.id,event);">
+                <img width="300vw" src="{{ url_for('static',filename='images/accept.png') }}" border="0">
+            </div>
+        </div>
+        <p></p>
+    </div>
+
+
+{% endblock %}

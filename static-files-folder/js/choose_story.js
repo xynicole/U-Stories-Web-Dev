@@ -39,14 +39,14 @@ function drop(id, evt) {
     let draggedItem = document.getElementById(optionId);
 
     // If story is skipped, generate another story and scroll the page back to the top
-    if(optionId = "skip-story") {
+    if(optionId == "skip-story") {
         generateRandomText();
         scroll(0,0);
     }   
     
     // Take story and load up another page similar to write-story.html, only without a title option
     // Keep the parent stories on page so that the user can refer to them while they are writing
-    if(optionId = "accept-story") {
+    if(optionId == "accept-story") {
 
     }
 }
