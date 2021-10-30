@@ -12,6 +12,10 @@
     border-collapse: collapse;
 }
 
+#story-head:hover {
+    cursor: pointer;
+}
+
 #story-head td {
     vertical-align: top;
     border: 1px solid #1e1d24;
