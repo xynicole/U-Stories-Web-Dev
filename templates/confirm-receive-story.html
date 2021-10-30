@@ -4,17 +4,15 @@
     <link rel="stylesheet" href="{{ url_for('static',filename='styles/confirm-receive-story.css') }}">
 {% endblock %}
 
-{% block onload %}
-    onload="generateRandomText();"
-{% endblock %}
-
 {% block navbuttons %}
     <button type="button" class="header" onclick="location.href='/p/homepage.html';">Back to Homepage</button>
 {% endblock %}
 
 {% block content %}
+
     <script type="text/javascript" src="{{ url_for('static',filename='js/choose_story.js') }}"></script>
-    
+
+
     <div id="all-container">
         <div id="story-and-accepter">
 
@@ -39,7 +37,8 @@
                     </tr>
                 {% endfor %}
             </table>
-        
+
+            <input type="hidden" id="story-id" value="{{ story_list[0].id }}">
             <div class="accept-skip" id="center-text" ondrop="drop(this,event);" ondragover="allowDrop(event);">
                 Drag choice here!
             </div>

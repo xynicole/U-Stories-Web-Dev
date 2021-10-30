@@ -2,10 +2,13 @@
 // So, either accept or skip
 let optionId;
 
+let storyId = document.getElementById("story-id");
+
 // Kind of similar to the example code
 function drop(id, evt) {
     evt.preventDefault();
     let draggedItem = document.getElementById(optionId);
+    
 
     // If story is skipped, go back to story selection
     if(optionId == "skip-story") {
@@ -15,7 +18,7 @@ function drop(id, evt) {
     // Take story and load up another page similar to write-story.html, only without a title option
     // Keep the parent stories on page so that the user can refer to them while they are writing
     if(optionId == "accept-story") {
-        
+        window.location.href = "/p/append-story.html?id=" + storyId;
     }
 }
 

@@ -33,6 +33,18 @@ def receive_story():
     stories = get_head_stories()
     return flask.render_template('receive-story.html', story_list=stories)
 
+@app.route('/p/append-story.html', methods=['POST', 'GET'])
+def append_story():
+    id = flask.request.values['id']
+    datastore_story_entry = retrieve_head_story(id)
+    stories = [datastore_story_entry]
+
+    while datastore_story_entry['child_id'] != 0 :
+        datastore_story_entry = retrieve_story(datastore_story_entry['child_id'])
+        stories.append(datastore_story_entry)
+        
+    return flask.render_template('append-story.html', story_list=stories)
+
 @app.route('/p/confirm-receive-story.html', methods=['POST', 'GET'])
 def confirm_receive_story():
     id = flask.request.values['id']
