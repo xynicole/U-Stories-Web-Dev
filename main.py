@@ -1,6 +1,6 @@
 import flask
 
-from datastore import create_head_story, update_entries, retrieve_story, init_story_head, get_head_stories
+from datastore import create_head_story, update_entries, retrieve_head_story, retrieve_story, init_story_head, get_head_stories
 from story_object import StoryEntry
 
 app = flask.Flask(__name__)
@@ -35,9 +35,15 @@ def receive_story():
 
 @app.route('/p/confirm-receive-story.html', methods=['POST', 'GET'])
 def confirm_receive_story():
-    # id = flask.request.values['id']
-    # datastore_story_entry = retrieve_story(id)
-    return flask.render_template('confirm-receive-story.html')
+    id = flask.request.values['id']
+    datastore_story_entry = retrieve_head_story(id)
+    stories = [datastore_story_entry]
+
+    while datastore_story_entry['child_id'] != 0 :
+        datastore_story_entry = retrieve_story(datastore_story_entry['child_id'])
+        stories.append(datastore_story_entry)
+
+    return flask.render_template('confirm-receive-story.html', story_list=stories)
 
 
 # Any page that is not specified will default here with no functionality

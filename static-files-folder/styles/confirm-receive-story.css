@@ -28,6 +28,7 @@
     margin-top: 3vh;
     margin-left: auto;
     margin-right: auto;
+    margin-bottom: 3vh;
     width: 80vw;
     border-collapse: collapse;
 }
@@ -35,6 +36,11 @@
 #story-table td {
     border: 1px solid #1e1d24;
     padding: 6px;
+    vertical-align: top;
+}
+
+#story-table th {
+    text-align: left;
 }
 
 #center-text {

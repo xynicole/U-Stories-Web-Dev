@@ -31,6 +31,11 @@ def create_head_story():
     key = client.key('head_story')
     return datastore.Entity(key)
 
+def retrieve_head_story(id):
+    client = get_client()
+    key = client.key('head_story', int(id))
+    return client.get(key)
+
 def retrieve_story(id):
     client = get_client()
     key = client.key('story', int(id))
