@@ -2,12 +2,11 @@
 // So, either accept or skip
 let optionId;
 
-let storyId = document.getElementById("story-id");
-
 // Kind of similar to the example code
 function drop(id, evt) {
     evt.preventDefault();
     let draggedItem = document.getElementById(optionId);
+    let storyId = document.getElementById("story-id").value;
     
 
     // If story is skipped, go back to story selection

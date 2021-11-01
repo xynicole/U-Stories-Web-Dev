@@ -2,6 +2,8 @@ let wordCount = document.getElementById("word-count");
 let inputText = document.getElementById("story-text");
 let titleText = document.getElementById("title");
 
+let pageName = document.getElementById("page-name");
+
 let functionalWordCounter = 0;
 let functionalTitleCounter = 0;
 // If the word limit is being changed, don't forget to update both html files for writing and receiving stories
@@ -9,17 +11,30 @@ let MAX_CHARACTERS = 1500;
 
 function checkEmptyAndWarn() {
     if (isEmpty()) {
-        alert("Either the title or body of the story is empty! You can't submit nothing!");
+        if (pageName.value == "write") {
+            alert("Either the title or body of the story is empty! You can't submit nothing!");
+        }
+        else {
+            alert("Body of the story is empty! You can't submit nothing!")
+        }
         return false;
     }
     return true;
 }
 
 function isEmpty() {
-    if (functionalTitleCounter <= 0 || functionalWordCounter <= 0) {
-        return true;
+    if (pageName.value == "write") {
+        if (functionalTitleCounter <= 0 || functionalWordCounter <= 0) {
+            return true;
+        }
+        return false;
     }
-    return false;
+    else {
+        if (functionalWordCounter <= 0) {
+            return true;
+        }
+        return false;
+    }
 }
 
 // ---------- Functions for body ----------

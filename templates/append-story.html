@@ -35,12 +35,14 @@
             {% endfor %}
         </table>
 
-        <form method="post" action="/create-new-story" onsubmit="return checkEmptyAndWarn()">
+        <form method="post" action="/create-new-child-story" onsubmit="return checkEmptyAndWarn()">
             <div id="text-container">
-                <input name="title" id="title" type="hidden"></input>
+                <input name="title" id="title" type="hidden" value="nothing"></input>
                 
                 <textarea name="story-text" id="story-text" maxlength="1500"></textarea>
                 <h2>Characters: <span id="word-count">-</span> / 1500</h2>
+                <input type="hidden" name="parent-id" value="{{ story_list[0].id }}"
+                <input type="hidden" id="page-name" value="append"
                 <div id="submit-story">
                     <input type="submit" value="Submit Story" id="submit-button" onclick="if(!isEmpty()){location.href='/p/homepage.html';}">
                 </div>

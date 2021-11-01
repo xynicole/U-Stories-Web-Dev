@@ -1,6 +1,6 @@
 import flask
 
-from datastore import create_head_story, update_entries, retrieve_head_story, retrieve_story, init_story_head, get_head_stories
+from datastore import create_story, create_head_story, update_entries, retrieve_head_story, retrieve_story, init_story_head, init_story_child, get_head_stories
 from story_object import StoryEntry
 
 app = flask.Flask(__name__)
@@ -12,11 +12,35 @@ def create_new_story():
     text = flask.request.values['story-text']
     author = 'user_name'
     story_list = create_head_story()
+    
 
     init_story_head(story_list, author, title, text)
 
     update_entries(story_list)
     return flask.render_template('homepage.html')
+
+@app.route('/create-new-child-story', methods=['POST', 'GET'])
+def create_new_child_story():
+    parent_id = flask.request.values['parent-id']
+    text = flask.request.values['story-text']
+    author = 'usered-named'
+    
+    new_story = create_story()
+
+    parent_story = retrieve_head_story(parent_id)
+
+    while parent_story['child_id'] != 0 :
+        parent_story = retrieve_story(parent_story['child_id'])
+
+    init_story_child(new_story, parent_story, author, text)
+
+    new_story['parent_id'] = int(parent_story.id)
+    parent_story['child_id'] = int(new_story.id)    
+
+    update_entries(parent_story)
+    update_entries(new_story)
+    return flask.render_template('homepage.html')
+
 
 # ---------- Actual Web Pages Start Here ----------
 @app.route('/')
