@@ -20,6 +20,8 @@
     vertical-align: top;
     border: 1px solid #1e1d24;
     padding: 6px;
+    word-break: break-all;
+    white-space: normal;
 }
 
 .StoryTitle {

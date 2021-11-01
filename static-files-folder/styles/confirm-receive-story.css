@@ -37,6 +37,8 @@
     border: 1px solid #1e1d24;
     padding: 6px;
     vertical-align: top;
+    word-break: break-all;
+    white-space: normal;
 }
 
 #story-table th {
