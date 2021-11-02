@@ -1,5 +1,17 @@
 <!DOCTYPE html>
 
+<!--
+    Important things to note:
+        All current blocks:
+            styles -> for including css made for a page, each page has their own css along with base.css for organization
+                      can also put js files there if none of the functions directly interact with the page (so no changing innerHTML or HTML elements in general)
+            onload -> in case you need to load some js as the page loads, make sure to include the <script> html section in the content block, or at least any block that is in the body
+                          refer to receive-story.html for an example, right at the start of the content block
+            page -> for stylistic purposes, allows you to add a custom title to the top of the page
+            navbuttons -> to organize buttons that can be used to navigate the site, they will all be aligned at the top right of the page
+            content -> the actual content of the body, where things happen
+-->
+
 <html>
     <head>
         <title>
@@ -8,9 +20,9 @@
         <link rel="icon" href="{{ url_for('static',filename='images/U-Logo.png') }}" type="image/png"/>
         <link rel="stylesheet" href="{{ url_for('static',filename='styles/base.css') }}">
         {% block styles %}{% endblock %}
-
     </head>
-    <body>
+    
+    <body {% block onload %}{% endblock %}>
         <header>
             <div class="header">
                 <div class="logo">

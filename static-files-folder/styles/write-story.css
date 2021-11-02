@@ -1,9 +1,9 @@
 #story-text {
     resize: none;
-    margin: 3vh 3vw;
+    margin: 3vh 3vw 1vh;
     width: 87vw;
     height: 66vh;
-    font-size: 28px;
+    font-size: 24px;
     background: #DFDCED;
     border: none;
     border-radius: 5px;
@@ -18,8 +18,56 @@
 #submit-button {
     width: 15vw;
     height: 10vh;
-    font-size: 40px;
+    font-size: 2vw;
     border: none;
     background: #DFDCED;
     border-radius: 10px;
+}
+
+#title-container {
+    display: flex;
+    justify-content: flex-start;
+    margin: 3vh 3vw;
+}
+
+#title {
+    margin-left: 1vw;
+    width: 80vw;
+    resize: none;
+    font-size: 24px;
+    background: #DFDCED;
+    border: none;
+    border-radius: 5px;
+}
+
+#received-title {
+    margin-left: 1vw;
+    width: 80vw;
+    font-size: 24px;
+    background: #DFDCED;
+    border: none;
+    border-radius: 5px;
+    text-align: left;
+}
+
+#story-table {
+    font-size: 24px;
+    margin-top: 3vh;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 3vh;
+    width: 80vw;
+    border-collapse: collapse;
+}
+
+#story-table td {
+    border: 1px solid #1e1d24;
+    padding: 6px;
+    vertical-align: top;
+    word-break: break-all;
+    white-space: normal;
+}
+
+#story-table th {
+    text-align: left;
 }

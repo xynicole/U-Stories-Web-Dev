@@ -1,0 +1,61 @@
+{% extends '_base.html' %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{{ url_for('static',filename='styles/confirm-receive-story.css') }}">
+{% endblock %}
+
+{% block navbuttons %}
+    <button type="button" class="header" onclick="location.href='/p/homepage.html';">Back to Homepage</button>
+{% endblock %}
+
+{% block content %}
+
+    <script type="text/javascript" src="{{ url_for('static',filename='js/choose_story.js') }}"></script>
+
+
+    <div id="all-container">
+        <div id="story-and-accepter">
+
+            <table id="story-table">
+                <colgroup>
+                    <col span='1' style='width: 20%;'>
+                    <col span='1' style='width: 80%;'>
+                </colgroup>
+                <tr>
+                    <th colspan="2">
+                        {{ story_list[0]['title'] }}
+                    </th>
+                </tr>
+                {% for story in story_list %}
+                    <tr>
+                        <td>
+                            {{ story['author'] }}
+                        </td>
+                        <td>
+                            {{ story['text'] }}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+
+            <input type="hidden" id="story-id" value="{{ story_list[0].id }}">
+            <div class="accept-skip" id="center-text" ondrop="drop(this,event);" ondragover="allowDrop(event);">
+                Drag choice here!
+            </div>
+        </div>
+
+        <!-- Options to skip or accept story -->
+        <div id="option-container">
+            <div id="skip-story" draggable="true" ondragstart="drag(this.id,event);">
+                <img width="300vw" src="{{ url_for('static',filename='images/skip.png') }}" border="0">
+            </div>
+
+            <div id="accept-story" draggable="true" ondragstart="drag(this.id,event);">
+                <img width="300vw" src="{{ url_for('static',filename='images/accept.png') }}" border="0">
+            </div>
+        </div>
+        <p></p>
+    </div>
+
+
+{% endblock %}

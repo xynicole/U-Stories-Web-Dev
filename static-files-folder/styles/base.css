@@ -31,7 +31,7 @@ button.header {
     transition: 0.3s;
     cursor: pointer;
     width: 100px;
-    background: rgb(130, 125, 160);
+    background: #DFDCED;
     border: none;
     border-radius: 3px;
     box-shadow: 2px 2px 2px 1px #2F0743;
@@ -51,6 +51,6 @@ div.body {
     display: flex;
     border-radius: 5px;
     width: 95%;
-    background: rgb(130, 125, 160);
+    background: #f0eef7;
     padding: 10px 0px;
 }
