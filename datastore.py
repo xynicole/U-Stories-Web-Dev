@@ -1,8 +1,10 @@
 import flask
 import datetime
-from google.cloud import datastore
 
-current_id = 1
+import sys
+import random
+
+from google.cloud import datastore
 
 def get_client():
     return datastore.Client()
@@ -10,7 +12,7 @@ def get_client():
 def get_stories():
     story_list = []
     client = get_client()
-    query = client.query(kind='story')
+    query = client.query(kind='child_story')
     for entity in query.fetch():
         story_list.append(entity)
     return story_list
@@ -24,17 +26,13 @@ def get_head_stories():
     return story_list
 
 def create_story():
-    global current_id
     client = get_client()
-    key = client.key('story', int(current_id))
-    current_id += 1
+    key = client.key('story', random.randint(1, sys.maxsize))
     return datastore.Entity(key)
 
 def create_head_story():
-    global current_id
     client = get_client()
-    key = client.key('head_story', int(current_id))
-    current_id += 1
+    key = client.key('head_story', random.randint(1, sys.maxsize))
     return datastore.Entity(key)
 
 def retrieve_head_story(id):
@@ -44,7 +42,7 @@ def retrieve_head_story(id):
 
 def retrieve_story(id):
     client = get_client()
-    key = client.key('story', int(id))
+    key = client.key('child_story', int(id))
     return client.get(key)
 
 def update_entries(story_entry):
@@ -58,13 +56,10 @@ def init_story_head(story_list, author, title, text):
     story_list['time'] = datetime.datetime.now()
     story_list['is_finished'] = False
     story_list['total_votes'] = 0
-    story_list['parent_id'] = story_list.id
     story_list['child_id'] = 0
     
 def init_story_child(new_story, parent_story, author, text):
-
     new_story['author'] = author
-    new_story['title'] = parent_story['title']
     new_story['text'] = text
     new_story['time'] = datetime.datetime.now()
     new_story['is_finished'] = False
