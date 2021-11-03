@@ -27,7 +27,7 @@ def get_head_stories():
 
 def create_story():
     client = get_client()
-    key = client.key('story', random.randint(1, sys.maxsize))
+    key = client.key('child_story', random.randint(1, sys.maxsize))
     return datastore.Entity(key)
 
 def create_head_story():
