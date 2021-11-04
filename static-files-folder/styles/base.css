@@ -1,17 +1,12 @@
 html {
-    background: #41295a;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #2F0743, #41295a);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #2F0743, #41295a); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    position: relative;
+    height: 100vh;
+    background: url(../images/story.jpeg) no-repeat 0px 0px;
+    background-size: cover;
+    background-attachment: scroll;
+    background-position: center center;
 }
 
-div.header {
-    display: flex;
-    border-radius: 25px;
-    background: #4F4971;
-    width: 100%;
-    align-items: center;
-    margin-bottom: 10px;    
-}
 
 div.boxes {
     position: absolute;
@@ -25,32 +20,4 @@ div.logo {
     font-size: 32px;
 }
 
-button.header {
-    padding: 20px;
-    opacity: 0.6;
-    transition: 0.3s;
-    cursor: pointer;
-    width: 100px;
-    background: #DFDCED;
-    border: none;
-    border-radius: 3px;
-    box-shadow: 2px 2px 2px 1px #2F0743;
-    margin-left: 5px;
-}
 
-button.header:hover {
-    opacity: 1;
-}
-
-div.bulk {
-    display: flex;
-    justify-content: center;
-}
-
-div.body {
-    display: flex;
-    border-radius: 5px;
-    width: 95%;
-    background: #f0eef7;
-    padding: 10px 0px;
-}
