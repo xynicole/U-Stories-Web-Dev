@@ -19,23 +19,33 @@
         </title>
         <link rel="icon" href="{{ url_for('static',filename='images/U-Logo.png') }}" type="image/png"/>
         <link rel="stylesheet" href="{{ url_for('static',filename='styles/base.css') }}">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         {% block styles %}{% endblock %}
     </head>
     
-    <body {% block onload %}{% endblock %}>
-        <header>
-            <div class="header">
-                <div class="logo">
-                    <p>
-                        U Stories{% block page %}{% endblock %}
-                    </p>
-                </div>
-                <div class="boxes">
-                    {% block navbuttons %}{% endblock %}
-                </div>
-            </div>
-        </header>
+    
 
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="/p/index.html">U Stories</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mr-auto" >
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/p/index.html">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/p/index.html">Log out</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+        
+        
         <section>
 
             <div class="bulk">
@@ -45,5 +55,5 @@
             </div>
             
         </section>
-    </body>
+    
 </html>

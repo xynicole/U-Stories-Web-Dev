@@ -1,9 +1,25 @@
-{% extends '_login-signup-base.html' %}
+{% block styles %}
+    <link rel="stylesheet" href="{{ url_for('static',filename='styles/login-signup-base.css') }}">
+{% endblock %}
 
-{% block page %}: Create an Account{% endblock %}
-
-
-{% block user %}Create a{% endblock %}
-{% block pass %}Create a{% endblock %}
-
-{% block logsig %}Sign Up{% endblock %}
+{% block page %}
+<div id="body">
+    <div class="overlay">
+        <div class="form-section">
+            <h3>Sign up</h3>
+            <form method="post" action="/sendpost">
+                <div class="form-input">
+                    <input type="text" name="Username" placeholder="Username" required="" autofocus>
+                </div>
+                <div class="form-input">
+                    <input type="password" name="password" placeholder="Password" required="">
+                </div>
+                <button type="submit" onclick="location.href='/p/homepage.html';" class="btn btn-primary theme-button mt-4">Sign up</button>
+            </form><p class="footer">Already have a account? <a href="/p/login.html" class="signuplink">Login now</a></p>
+        </div>
+    </div>
+    <div id='stars'></div>
+    <div id='stars2'></div>
+    <div id='stars3'></div>
+</div>
+{% endblock %}

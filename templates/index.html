@@ -1,28 +1,32 @@
-{% extends '_base.html' %}
-
 {% block styles %}
     <link rel="stylesheet" href="{{ url_for('static',filename='styles/index.css') }}">
 {% endblock %}
 
-{% block navbuttons %}
-    <button type="button" class="header" onclick="location.href='/p/login.html';">Login</button>
-    <button type="button" class="header" onclick="location.href='/p/sign-up.html';">Sign Up</button>
-{% endblock %}
-
 {% block content %}
     <div id="index">
-        <h2>Welcome to U Stories!</h2>
-        <p>This is a creatively-driven website with the sole purpose of writing and sharing stories with people on the internet.</p>
-        <br>
-        <p>As a user, there are two things you can do:</p>
-        <table id="user-functions">
-            <tr>
-                <td>Start writing your own story for others to add on to later</td>
-                <td id="text-center">-or-</td>
-                <td id="text-right">Add on to other's stories with your own ideas</td>
-            </tr>
-        </table>
-        <br>
-        <p>There is no real objective besides creative freedom and experimenting with new writing styles, it's all in good fun.</p>
+        <div class="text-wrapper text-center ">
+            <div class="container">
+                <div id="text-center">
+                    <h1>Welcome to U Stories!</h1>
+                    <h3>This is a creatively-driven website with the sole purpose of writing and sharing stories with people on the internet.</h3>
+                    <br>
+                    <p>As a user, there are two things you can do:</p>
+                    <table id="user-functions">
+                        <tr>
+                            <td>Start writing your own story for others to add on to later</td>
+                            <td id="text-center">-or-</td>
+                            <td id="text-right">Add on to other's stories with your own ideas</td>
+                        </tr>
+                    </table>
+                    <br>
+                    <p>There is no real objective besides creative freedom and experimenting with new writing styles, it's all in good fun.</p>
+                    <a href="/p/login.html" >Log in</a> 
+                    <a href="/p/sign-up.html" >Sign up</a>
+                </div>
+            </div>  			
+        </div>
+        <div id='stars'></div>
+        <div id='stars2'></div>
+        <div id='stars3'></div>
     </div>
 {% endblock %}
