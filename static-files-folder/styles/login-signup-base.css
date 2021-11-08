@@ -7,6 +7,10 @@
     background-position: center center;
 }
 
+body {
+    margin: 0;
+}
+
 .overlay {
     background: linear-gradient(to right, rgba(0, 0, 0, 0.38), rgba(0, 0, 0, 0.44));
     display: grid;
