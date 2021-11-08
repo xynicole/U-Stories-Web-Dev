@@ -7,7 +7,6 @@ html {
     background-position: center center;
 }
 
-
 div.boxes {
     position: absolute;
     right: 2.5%;
@@ -20,4 +19,22 @@ div.logo {
     font-size: 32px;
 }
 
-
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #888; 
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+  }

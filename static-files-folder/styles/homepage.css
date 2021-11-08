@@ -1,16 +1,10 @@
+body {
+    height: 100vh;
+    background: rgb(26, 25, 25, 0.7);
+}
+
 div.container {
     display: flex;
     justify-content: center;
     width: 100%;
-}
-
-button.write-receive {
-    font-size: 30px;
-    width: 300px;
-    height: 200px;
-    margin-left: 5%;
-    margin-right: 5%;
-    border: none;
-    border-radius: 3px;
-    box-shadow: 2px 2px 2px 1px rgb(240, 184, 62);
 }
