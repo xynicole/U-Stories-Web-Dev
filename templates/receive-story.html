@@ -11,6 +11,14 @@
 {% block content %}
     <script type="text/javascript" src="{{ url_for('static',filename='js/choose_story.js') }}"></script>
 
+    <div class="container">
+        <div class="row">
+        <div class="col text-center">
+        <a class="btn btn-outline-warning btn-lg  bg-transparent" href="/p/write-story.html" role="button">Random</a>
+    </div>
+    </div>
+    </div>
+
     <div id="all-container">
         {% for story in story_list %}
                 <table id="story-head" onclick="location.href='/p/confirm-receive-story.html?id={{ story.id }}';">
@@ -38,14 +46,5 @@
         {% endfor %}
 
     </div>
-
-      <div class="container">
-          <div class="row">
-          <div class="col text-center">
-          <a class="btn btn-outline-warning btn-lg  bg-transparent" href="/p/write-story.html" role="button">Previous Story</a>
-          <a class="btn btn-outline-warning btn-lg  bg-transparent" href="/p/receive-story.html" role="button">Next Story</a>
-      </div>
-      </div>
-      </div>
 
 {% endblock %}
