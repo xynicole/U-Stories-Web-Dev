@@ -11,7 +11,7 @@
 {% endblock %}
 
 {% block content %}
-    
+
     <div id="all-container">
         <table id="story-table">
             <colgroup>
@@ -35,16 +35,17 @@
             {% endfor %}
         </table>
 
+        <h2>Write your append below:</h2>
         <form method="post" action="/create-new-child-story" onsubmit="return checkAndWarn()">
             <div id="text-container">
                 <input name="title" id="title" type="hidden" value="nothing"></input>
-                
+
                 <textarea name="story-text" id="story-text" maxlength="1400"></textarea>
                 <h2>Size: <span id="word-count">-</span> / 1500</h2>
-                <input type="hidden" name="parent-id" value="{{ story_list[0].id }}"
-                <input type="hidden" id="page-name" value="append"
+                <input type="hidden" name="parent-id" value="{{ story_list[0].id }}" />
+                <input type="hidden" id="page-name" value="append" />
                 <div id="submit-story">
-                    <input type="submit" value="Submit Story" class="btn btn-outline-warning btn-lg" onclick="if(!checkWithoutWarn()){location.href='/p/homepage.html';}">
+                    <input type="submit" value="Append to Story" class="btn btn-outline-warning btn-lg" onclick="if(!checkWithoutWarn()){location.href='/p/homepage.html';}">
                 </div>
             </div>
         </form>
