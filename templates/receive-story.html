@@ -39,13 +39,15 @@
 
     </div>
 
-    <div class="container">
-        <div class="row">
-        <div class="col text-center">
-        <a class="btn btn-outline-warning btn-lg  bg-transparent" href="/p/write-story.html" role="button">Previous Story</a>
-        <a class="btn btn-outline-warning btn-lg  bg-transparent" href="/p/receive-story.html" role="button">Next Story</a>
-    </div>
-    </div>
-    </div>
+    {% block content %}
+      <div class="container">
+          <div class="row">
+          <div class="col text-center">
+          <a class="btn btn-outline-warning btn-lg  bg-transparent" href="/p/write-story.html" role="button">Previous Story</a>
+          <a class="btn btn-outline-warning btn-lg  bg-transparent" href="/p/receive-story.html" role="button">Next Story</a>
+      </div>
+      </div>
+      </div>
+    {% endblock %}
 
 {% endblock %}
