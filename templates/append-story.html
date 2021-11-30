@@ -35,7 +35,7 @@
             {% endfor %}
         </table>
 
-        <h2>Write your append below:</h2>
+        <h2 align="center">Write your addition to the story below!</h2>
         <form method="post" action="/create-new-child-story" onsubmit="return checkAndWarn()">
             <div id="text-container">
                 <input name="title" id="title" type="hidden" value="nothing"></input>
@@ -45,7 +45,7 @@
                 <input type="hidden" name="parent-id" value="{{ story_list[0].id }}" />
                 <input type="hidden" id="page-name" value="append" />
                 <div id="submit-story">
-                    <input type="submit" value="Append to Story" class="btn btn-outline-warning btn-lg" onclick="if(!checkWithoutWarn()){location.href='/p/homepage.html';}">
+                    <input type="submit" value="Add to Story" class="btn btn-outline-warning btn-lg" onclick="if(!checkWithoutWarn()){location.href='/p/homepage.html';}">
                 </div>
             </div>
         </form>
