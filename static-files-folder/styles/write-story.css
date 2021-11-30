@@ -1,3 +1,11 @@
+html {
+    background: rgb(69,42,27);
+    background: -moz-linear-gradient(90deg, rgba(69,42,27,1) 0%, rgba(79,52,47,1) 100%);
+    background: -webkit-linear-gradient(90deg, rgba(69,42,27,1) 0%, rgba(79,52,47,1) 100%);
+    background: linear-gradient(90deg, rgba(69,42,27,1) 0%, rgba(79,52,47,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#452a1b",endColorstr="#4f342f",GradientType=1);
+}
+
 body {
     height: 100vh;
     background: rgb(26, 25, 25, 0.7);
