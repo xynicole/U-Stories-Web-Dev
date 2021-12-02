@@ -1,14 +1,10 @@
 html {
-    background: rgb(69,42,27);
-    background: -moz-linear-gradient(90deg, rgba(69,42,27,1) 0%, rgba(79,52,47,1) 100%);
-    background: -webkit-linear-gradient(90deg, rgba(69,42,27,1) 0%, rgba(79,52,47,1) 100%);
-    background: linear-gradient(90deg, rgba(69,42,27,1) 0%, rgba(79,52,47,1) 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#452a1b",endColorstr="#4f342f",GradientType=1);
+    background: rgb(39, 32, 27);
 }
 
 body {
     height: 100vh;
-    background: rgb(26, 25, 25, 0.7);
+    background: rgb(39, 32, 27);
     color: #fff;
 }
 
@@ -73,6 +69,7 @@ body {
     margin-right: auto;
     margin-bottom: 3vh;
     width: 80vw;
+    max-width: 80vw;
     border-collapse: collapse;
 }
 
@@ -81,8 +78,9 @@ body {
     border: 1px solid #fff;
     padding: 6px;
     vertical-align: top;
-    word-break: break-all;
+    word-wrap: break-word;
     white-space: normal;
+    max-width: 70vw;
 }
 
 #story-table th {

@@ -34,7 +34,7 @@
                 {% endfor %}
             </table>
 
-            <input type="hidden" id="story-id" value="{{ story_list[0].id }}">
+            <input type="hidden" id="story-id" value="{{ story_list[0].key.name }}">
         </div>
 
         <!-- Options to skip or accept story -->
@@ -44,7 +44,7 @@
             </div>
 
             <div id="accept-story" draggable="true" ondragstart="drag(this.id,event);">
-                <a class="btn btn-outline-warning btn-lg" href="/p/append-story.html?id={{ story_list[0].id }}" role="button">Accept</a>
+                <a class="btn btn-outline-warning btn-lg" href="/p/append-story.html?id={{ story_list[0].key.name }}" role="button">Accept</a>
             </div>
         </div>
         <p></p>

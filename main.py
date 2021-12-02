@@ -16,6 +16,7 @@ def create_new_story():
 
     init_story_head(story_list, author, title, text)
 
+    print("Bowza!" + story_list.key.name)
     update_entries(story_list)
     return flask.render_template('homepage.html')
 
@@ -29,13 +30,13 @@ def create_new_child_story():
 
     parent_story = retrieve_head_story(parent_id)
 
-    while parent_story['child_id'] != 0 :
+    while parent_story['child_id'] != "" :
         parent_story = retrieve_story(parent_story['child_id'])
 
     init_story_child(new_story, parent_story, author, text)
 
-    new_story['parent_id'] = int(parent_story.id)
-    parent_story['child_id'] = int(new_story.id)    
+    new_story['parent_id'] = parent_story.key.name
+    parent_story['child_id'] = new_story.key.name
 
     update_entries(parent_story)
     update_entries(new_story)
@@ -63,7 +64,7 @@ def append_story():
     datastore_story_entry = retrieve_head_story(id)
     stories = [datastore_story_entry]
 
-    while datastore_story_entry['child_id'] != 0 :
+    while datastore_story_entry['child_id'] != "" :
         datastore_story_entry = retrieve_story(datastore_story_entry['child_id'])
         stories.append(datastore_story_entry)
         
@@ -75,7 +76,7 @@ def confirm_receive_story():
     datastore_story_entry = retrieve_head_story(id)
     stories = [datastore_story_entry]
 
-    while datastore_story_entry['child_id'] != 0 :
+    while datastore_story_entry['child_id'] != "" :
         datastore_story_entry = retrieve_story(datastore_story_entry['child_id'])
         stories.append(datastore_story_entry)
 
