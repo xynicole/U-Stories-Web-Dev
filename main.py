@@ -13,10 +13,8 @@ def create_new_story():
     author = 'user_name'
     story_list = create_head_story()
     
-
     init_story_head(story_list, author, title, text)
 
-    print("Bowza!" + story_list.key.name)
     update_entries(story_list)
     return flask.render_template('homepage.html')
 
