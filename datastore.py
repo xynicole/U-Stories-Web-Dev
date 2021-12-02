@@ -37,11 +37,9 @@ def create_head_story():
     client = get_client()
     name = socket.gethostbyname(socket.gethostname()) + str(datetime.datetime.now()) + str(random.randint(1, sys.maxsize))
     key = client.key('head_story', name)
-    print(key.name)
     return datastore.Entity(key)
 
 def retrieve_head_story(name):
-    print("retrieve " + name)
     client = get_client()
     key = client.key('head_story', name)
     return client.get(key)
