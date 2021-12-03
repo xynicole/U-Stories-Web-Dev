@@ -1,5 +1,7 @@
 import flask
 
+from random import randint
+
 from datastore import create_story, create_head_story, update_entries, retrieve_head_story, retrieve_story, init_story_head, init_story_child, get_head_stories
 from story_object import StoryEntry
 
@@ -7,12 +9,12 @@ app = flask.Flask(__name__)
 
 @app.route('/create-new-story', methods=['POST', 'GET'])
 def create_new_story():
-    # Grab title and text from HTML 
+    # Grab title and text from HTML
     title = flask.request.values['title']
     text = flask.request.values['story-text']
     author = 'user_name'
     story_list = create_head_story()
-    
+
     init_story_head(story_list, author, title, text)
 
     update_entries(story_list)
@@ -23,7 +25,7 @@ def create_new_child_story():
     parent_id = flask.request.values['parent-id']
     text = flask.request.values['story-text']
     author = 'usered-named'
-    
+
     new_story = create_story()
 
     parent_story = retrieve_head_story(parent_id)
@@ -54,7 +56,13 @@ def write_story():
 @app.route('/p/receive-story.html', methods=['POST', 'GET'])
 def receive_story():
     stories = get_head_stories()
-    return flask.render_template('receive-story.html', story_list=stories)
+
+    # grab the id of a random story from the list of stories
+    stories_list = list(stories)
+    random_story_idx = randint(0, len(stories_list))
+    random_story_id = stories_list[random_story_idx].id
+
+    return flask.render_template('receive-story.html', story_list=stories, random_story_id=random_story_id)
 
 @app.route('/p/append-story.html', methods=['POST', 'GET'])
 def append_story():
@@ -65,7 +73,7 @@ def append_story():
     while datastore_story_entry['child_id'] != "" :
         datastore_story_entry = retrieve_story(datastore_story_entry['child_id'])
         stories.append(datastore_story_entry)
-        
+
     return flask.render_template('append-story.html', story_list=stories)
 
 @app.route('/p/confirm-receive-story.html', methods=['POST', 'GET'])
