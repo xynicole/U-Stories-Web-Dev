@@ -59,7 +59,7 @@ def receive_story():
 
     # grab the id of a random story from the list of stories
     stories_list = list(stories)
-    random_story_idx = randint(0, len(stories_list))
+    random_story_idx = randint(0, len(stories_list)-1)
     random_story_id = stories_list[random_story_idx].key.name
 
     return flask.render_template('receive-story.html', story_list=stories, random_story_id=random_story_id)
