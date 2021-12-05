@@ -1,11 +1,27 @@
 import flask
 
 from random import randint
+from hashlib import sha256
 
-from datastore import create_story, create_head_story, update_entries, retrieve_head_story, retrieve_story, init_story_head, init_story_child, get_head_stories
+from datastore import get_users, create_user, create_story, create_head_story, update_entries, retrieve_head_story, retrieve_story, init_story_head, init_story_child, get_head_stories
 from story_object import StoryEntry
 
 app = flask.Flask(__name__)
+
+@app.route('/sign-up', methods=['POST', 'GET'])
+def sign_up():
+    username = flask.request.values['username']
+    users = get_users()
+
+    # check to see if username is already taken; if so, reload page
+    for user in users:
+        if user.username == username:
+            return flask.render_template('sign-up.html')
+
+    hashed_pw = sha256(flask.request.values['password']).digest()
+
+    create_user(username, hashed_pw)
+    return flask.render_template('homepage.html')
 
 @app.route('/create-new-story', methods=['POST', 'GET'])
 def create_new_story():

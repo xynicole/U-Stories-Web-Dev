@@ -11,6 +11,18 @@ from google.cloud import datastore
 def get_client():
     return datastore.Client()
 
+def get_users():
+    user_list = []
+    client = get_client()
+    query = client.query(kind='user')
+    for entity in query.fetch():
+        user_list.append(entity)
+    return user_list
+
+def create_user():
+    client = get_client()
+    query = client.query(kind='user')
+
 def get_stories():
     story_list = []
     client = get_client()
@@ -23,7 +35,7 @@ def get_head_stories():
     story_list = []
     client = get_client()
     query = client.query(kind='head_story')
-    for entity in query.fetch():        
+    for entity in query.fetch():
         story_list.append(entity)
     return story_list
 
@@ -53,6 +65,10 @@ def update_entries(story_entry):
     client = get_client()
     client.put(story_entry)
 
+def init_user(username, hashed_pw):
+    user['username'] = username
+    user['hashed_pw'] = hashed_pw
+
 def init_story_head(story_list, author, title, text):
     story_list['author'] = author
     story_list['title'] = title
@@ -61,7 +77,7 @@ def init_story_head(story_list, author, title, text):
     story_list['is_finished'] = False
     story_list['total_votes'] = 0
     story_list['child_id'] = ""
-    
+
 def init_story_child(new_story, parent_story, author, text):
     new_story['author'] = author
     new_story['text'] = text
