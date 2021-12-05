@@ -16,12 +16,12 @@ def sign_up():
     # check to see if username is already taken; if so, reload page
     for user in users:
         if user['username'] == username:
-            return flask.render_template('sign-up.html', username_taken=True)
+            return flask.render_template('homepage.html')
 
     hashed_pw = sha256(flask.request.values['password']).digest()
 
     create_user(username, hashed_pw)
-    flask.response.set_cookie('username', username)
+    #flask.response.set_cookie('username', username)
     return flask.render_template('homepage.html')
 
 @app.route('/create-new-story', methods=['POST', 'GET'])
