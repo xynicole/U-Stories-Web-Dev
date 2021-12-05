@@ -11,7 +11,7 @@
 {% endblock %}
 
 {% block content %}
-
+    
     <div id="all-container">
         <table id="story-table">
             <colgroup>
@@ -35,17 +35,16 @@
             {% endfor %}
         </table>
 
-        <h2 align="center">Write your addition to the story below!</h2>
-        <form method="post" action="/create-new-child-story" onsubmit="return checkAndWarn()">
+        <form method="post" action="/create-new-child-story" onsubmit="return checkEmptyAndWarn()">
             <div id="text-container">
                 <input name="title" id="title" type="hidden" value="nothing"></input>
-
+                
                 <textarea name="story-text" id="story-text" maxlength="1500"></textarea>
-                <h2>Size: <span id="word-count">-</span> / 1500</h2>
-                <input type="hidden" name="parent-id" value="{{ story_list[0].key.name }}" />
-                <input type="hidden" id="page-name" value="append" />
+                <h2>Characters: <span id="word-count">-</span> / 1500</h2>
+                <input type="hidden" name="parent-id" value="{{ story_list[0].id }}"
+                <input type="hidden" id="page-name" value="append"
                 <div id="submit-story">
-                    <input type="submit" value="Add to Story" class="btn btn-outline-warning btn-lg" onclick="if(!checkWithoutWarn()){location.href='/p/homepage.html';}">
+                    <input type="submit" value="Submit Story" id="submit-button" onclick="if(!isEmpty()){location.href='/p/homepage.html';}">
                 </div>
             </div>
         </form>

@@ -1,18 +1,10 @@
-html {
-    background: rgb(39, 32, 27);
-}
-
-body {
-    height: 100vh;
-    background: rgb(39, 32, 27);
-    color: rgb(255, 255, 255)
-}
-
 #all-container {
     width: 100vw;
 }
 
 #story-and-accepter {
+    background: #f0eef7;
+    border-radius: 10px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -25,6 +17,12 @@ body {
     margin-top: 3vh;
 }
 
+/*
+#stories {
+    
+}
+*/
+
 #story-table {
     font-size: 24px;
     margin-top: 3vh;
@@ -36,13 +34,11 @@ body {
 }
 
 #story-table td {
-    background: #000;
-    border: 1px solid #fff;
+    border: 1px solid #1e1d24;
     padding: 6px;
     vertical-align: top;
-    word-wrap: break-word;
+    word-break: break-all;
     white-space: normal;
-    max-width: 70vw;
 }
 
 #story-table th {

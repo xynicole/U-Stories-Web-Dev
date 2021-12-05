@@ -1,32 +1,9 @@
-<!DOCTYPE html>
+{% extends '_login-signup-base.html' %}
 
-<html>
-    <head>
-        <title>Login</title>
-        <link rel="icon" href="{{ url_for('static',filename='images/U-Logo.png') }}" type="image/png"/>
-        <link rel="stylesheet" href="{{ url_for('static',filename='styles/login-signup-base.css') }}">
-    </head>
-    
-    <body>
-        <div id="body">
-            <div class="overlay">
-                <div class="form-section">
-                    <h3>Log in</h3>
-                    <form  method="post" action="/sendpost">
-                        <div class="form-input">
-                            <input type="text" name="Username" placeholder="Username" required="" autofocus >
-                        </div>
-                        <div class="form-input">
-                            <input type="password" name="password" placeholder="Password" required="">
-                        </div>
-                        <button type="submit" onclick="location.href='/p/homepage.html';" class="btn btn-primary theme-button mt-4">Log in</button>
-                    </form><p class="footer">Don't have a account? <a href="/p/sign-up.html" class="signuplink">Sign up now</a></p>
-                </div>
-            </div>
-            <div id='stars'></div>
-            <div id='stars2'></div>
-            <div id='stars3'></div>
-        </div>
-    </body>
+{% block page %}: Login{% endblock %}
 
-</html>
+
+{% block user %}Enter{% endblock %}
+{% block pass %}Enter{% endblock %}
+
+{% block logsig %}Login{% endblock %}

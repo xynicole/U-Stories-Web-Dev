@@ -1,21 +1,10 @@
-html {
-    background: rgb(39, 32, 27);
-}
-
-body {
-    height: 100vh;
-    background: rgb(39, 32, 27);
-    color: #fff;
-}
-
 #story-text {
     resize: none;
     margin: 3vh 3vw 1vh;
     width: 87vw;
     height: 66vh;
     font-size: 24px;
-    background: rgba(255, 255, 255, 0.2);
-    color: #fff;
+    background: #DFDCED;
     border: none;
     border-radius: 5px;
 }
@@ -46,8 +35,7 @@ body {
     width: 80vw;
     resize: none;
     font-size: 24px;
-    background: rgba(255, 255, 255, 0.2);
-    color: #fff;
+    background: #DFDCED;
     border: none;
     border-radius: 5px;
 }
@@ -73,13 +61,11 @@ body {
 }
 
 #story-table td {
-    background: #000;
-    border: 1px solid #fff;
+    border: 1px solid #1e1d24;
     padding: 6px;
     vertical-align: top;
-    word-wrap: break-word;
+    word-break: break-all;
     white-space: normal;
-    max-width: 70vw;
 }
 
 #story-table th {

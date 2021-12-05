@@ -1,15 +1,5 @@
-html {
-    background: rgb(39, 32, 27);
-}
-
-body {
-    height: 100vh;
-    background: rgb(39, 32, 27);
-    color: #fff
-}
-
 #all-container {
-    width: 100%;
+    width: 100vw;
 }
 
 #story-head {
@@ -27,13 +17,11 @@ body {
 }
 
 #story-head td {
-    background: #000;
     vertical-align: top;
-    border: 1px solid #fff;
+    border: 1px solid #1e1d24;
     padding: 6px;
-    word-wrap: break-word;
+    word-break: break-all;
     white-space: normal;
-    max-width: 70vw;
 }
 
 .StoryTitle {
