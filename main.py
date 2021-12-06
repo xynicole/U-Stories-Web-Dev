@@ -9,7 +9,6 @@ from story_object import StoryEntry
 app = flask.Flask(__name__)
 app.secret_key = "homiez"
 
-<<<<<<< HEAD
 @app.route('/sign-up', methods=['POST', 'GET'])
 def sign_up():
     username = flask.request.values['username']
@@ -26,8 +25,6 @@ def sign_up():
     flask.session['user'] = username
     return flask.render_template('homepage.html', username=get_user())
 
-=======
->>>>>>> main
 @app.route('/login', methods=['POST', 'GET'])
 def login():
     username = flask.request.values['username']
@@ -44,25 +41,7 @@ def login():
     if hashed_pw != user['hashed_pw']:
         return flask.render_template('login.html')
 
-<<<<<<< HEAD
     flask.session['user'] = username
-=======
-    # SET COOKIE HERE??
-    
-    return flask.render_template('homepage.html',user=user)
-    
-    
-
-@app.route('/sign-up', methods=['POST', 'GET'])
-def sign_up():
-    username = flask.request.values['username']
-    users = get_users()
->>>>>>> main
-
-    # check to see if username is already taken; if so, reload page
-    for user in users:
-        if user['username'] == username:
-            return flask.render_template('sign-up.html')
 
     hashed_pw = sha256(flask.request.values['password'].encode('utf-8')).hexdigest()
 
