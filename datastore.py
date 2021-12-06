@@ -29,7 +29,7 @@ def create_user(username, hashed_pw):
 
 def lookup_user(username):
     client = get_client()
-    user = client.query(kind='user', username)
+    user = client.key('user', username)
     return user
 
 def get_stories():
