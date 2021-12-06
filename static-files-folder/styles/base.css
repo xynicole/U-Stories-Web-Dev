@@ -38,3 +38,11 @@ div.logo {
   ::-webkit-scrollbar-thumb:hover {
     background: #555; 
   }
+
+
+  .dropdown-menu {
+    display: none;
+    position: absolute;
+    width: 10px;
+    height: auto;
+  }

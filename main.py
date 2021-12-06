@@ -2,11 +2,33 @@ import flask
 
 from random import randint
 from hashlib import sha256
-
-from datastore import lookup_user, get_users, create_user, create_story, create_head_story, update_entries, retrieve_head_story, retrieve_story, init_story_head, init_story_child, get_head_stories
+from datastore import*
+#from datastore import get_users,lookup_user, create_user, create_story, create_head_story, update_entries, retrieve_head_story, retrieve_story, init_story_head, init_story_child, get_head_stories
 from story_object import StoryEntry
 
 app = flask.Flask(__name__)
+
+@app.route('/login', methods=['POST', 'GET'])
+def login():
+    username = flask.request.values['username']
+    user = lookup_user(username)
+    
+
+    # check to see that username exists
+    if user == None:
+        return flask.render_template('login.html')
+
+    hashed_pw = sha256((flask.request.values['password']).encode('utf-8')).hexdigest()
+    
+    # check to see that passwords match
+    if hashed_pw != user['hashed_pw']:
+        return flask.render_template('login.html')
+
+    # SET COOKIE HERE??
+    
+    return flask.render_template('homepage.html',user=user)
+    
+    
 
 @app.route('/sign-up', methods=['POST', 'GET'])
 def sign_up():
@@ -22,25 +44,6 @@ def sign_up():
 
     create_user(username, hashed_pw)
     #flask.response.set_cookie('username', username)
-    return flask.render_template('homepage.html')
-
-@app.route('/login', methods=['POST', 'GET'])
-def login():
-    username = flask.request.values['username']
-    user = lookup_user(username)
-
-    # check to see that username exists
-    if user == None:
-        return flask.render_template('login.html')
-
-    hashed_pw = sha256(flask.request.values['password'].encode('utf-8')).hexdigest()
-
-    # check to see that passwords match
-    if hashed_pw != user['hashed_pw']:
-        return flask.render_template('login.html')
-
-    # SET COOKIE HERE??
-
     return flask.render_template('homepage.html')
 
 @app.route('/create-new-story', methods=['POST', 'GET'])
