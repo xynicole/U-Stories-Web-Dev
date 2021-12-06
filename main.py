@@ -91,6 +91,16 @@ def create_new_child_story():
 
     return flask.render_template('confirm-receive-story.html', story_list=stories)
 
+def get_story_list(id):
+    datastore_story_entry = retrieve_head_story(id)
+    stories = [datastore_story_entry]
+
+    while datastore_story_entry['child_id'] != "" :
+        datastore_story_entry = retrieve_story(datastore_story_entry['child_id'])
+        stories.append(datastore_story_entry)
+
+    return stories
+    
 
 # ---------- Actual Web Pages Start Here ----------
 @app.route('/')
