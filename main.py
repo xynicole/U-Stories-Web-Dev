@@ -10,18 +10,22 @@ app = flask.Flask(__name__)
 
 @app.route('/sign-up', methods=['POST', 'GET'])
 def sign_up():
+    print("I got here!")
     username = flask.request.values['username']
     users = get_users()
+    print("2")
 
     # check to see if username is already taken; if so, reload page
     for user in users:
-        if user['username'] == username:
-            return flask.render_template('homepage.html')
+        if user['username'] == username or user['username'] == "":
+            return flask.render_template('sign-up.html')
 
-    hashed_pw = sha256(flask.request.values['password']).digest()
+    print("pt3")
+    hashed_pw = sha256(flask.request.values['password'].encode('utf-8')).digest()
 
     create_user(username, hashed_pw)
     #flask.response.set_cookie('username', username)
+    print("4")
     return flask.render_template('homepage.html')
 
 @app.route('/create-new-story', methods=['POST', 'GET'])

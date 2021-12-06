@@ -12,6 +12,7 @@ def get_client():
     return datastore.Client()
 
 def get_users():
+    print("wow!")
     user_list = []
     client = get_client()
     query = client.query(kind='user')
@@ -23,6 +24,7 @@ def create_user(username, hashed_pw):
     client = get_client()
     key = client.key('user', username)
     user = datastore.Entity(key)
+    user['username'] = username    
     user['hashed_pw'] = hashed_pw
     client.put(user)
 
