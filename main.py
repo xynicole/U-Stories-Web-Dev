@@ -7,6 +7,7 @@ from datastore import get_users, create_user, create_story, create_head_story, u
 from story_object import StoryEntry
 
 app = flask.Flask(__name__)
+app.secret_key = "homiez"
 
 @app.route('/sign-up', methods=['POST', 'GET'])
 def sign_up():
