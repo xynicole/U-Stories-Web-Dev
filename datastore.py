@@ -30,7 +30,7 @@ def create_user(username, hashed_pw):
 def lookup_user(username):
     client = get_client()
     user = client.key('user', username)
-    return user
+    return client.get(user)
 
 def get_stories():
     story_list = []
