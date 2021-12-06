@@ -12,7 +12,6 @@ def get_client():
     return datastore.Client()
 
 def get_users():
-    print("wow!")
     user_list = []
     client = get_client()
     query = client.query(kind='user')
