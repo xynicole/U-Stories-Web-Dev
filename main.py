@@ -21,7 +21,7 @@ def sign_up():
     hashed_pw = sha256(flask.request.values['password'].encode('utf-8')).hexdigest()
 
     create_user(username, hashed_pw)
-    #flask.response.set_cookie('username', username)
+    flask.session['user'] = username
     return flask.render_template('homepage.html')
 
 @app.route('/login', methods=['POST', 'GET'])
@@ -39,16 +39,25 @@ def login():
     if hashed_pw != user['hashed_pw']:
         return flask.render_template('login.html')
 
-    # SET COOKIE HERE??
+    flask.session['user'] = username
 
     return flask.render_template('homepage.html')
+
+def get_user():
+    return flask.session.get('user', None)
+
+@app.route('/sign-out')
+def sign_out():
+    flask.session['user'] = None
+    #return flask.redirect('/')
+    return flask.render_template('index.html')
 
 @app.route('/create-new-story', methods=['POST', 'GET'])
 def create_new_story():
     # Grab title and text from HTML
     title = flask.request.values['title']
     text = flask.request.values['story-text']
-    author = 'user_name'
+    author = get_user()
     story_list = create_head_story()
 
     init_story_head(story_list, author, title, text)
@@ -60,7 +69,7 @@ def create_new_story():
 def create_new_child_story():
     parent_id = flask.request.values['parent-id']
     text = flask.request.values['story-text']
-    author = 'usered-named'
+    author = get_user()
 
     new_story = create_story()
 
@@ -76,7 +85,10 @@ def create_new_child_story():
 
     update_entries(parent_story)
     update_entries(new_story)
-    return flask.render_template('homepage.html')
+
+    stories = get_story_list(parent_id)
+
+    return flask.render_template('confirm-receive-story.html', story_list=stories)
 
 
 # ---------- Actual Web Pages Start Here ----------
