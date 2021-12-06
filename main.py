@@ -33,7 +33,7 @@ def login():
     if user == None:
         return flask.render_template('login.html')
 
-    hashed_pw = sha256(flask.request.values['password']).hexdigest()
+    hashed_pw = sha256(flask.request.values['password']).encode('utf-8')).hexdigest()
 
     # check to see that passwords match
     if hashed_pw != user['hashed_pw']:
