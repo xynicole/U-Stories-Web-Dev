@@ -7,7 +7,27 @@ from datastore import*
 from story_object import StoryEntry
 
 app = flask.Flask(__name__)
+app.secret_key = "homiez"
 
+<<<<<<< HEAD
+@app.route('/sign-up', methods=['POST', 'GET'])
+def sign_up():
+    username = flask.request.values['username']
+    users = get_users()
+
+    # check to see if username is already taken; if so, reload page
+    for user in users:
+        if user['username'] == username:
+            return flask.render_template('sign-up.html')
+
+    hashed_pw = sha256(flask.request.values['password'].encode('utf-8')).hexdigest()
+
+    create_user(username, hashed_pw)
+    flask.session['user'] = username
+    return flask.render_template('homepage.html', username=get_user())
+
+=======
+>>>>>>> main
 @app.route('/login', methods=['POST', 'GET'])
 def login():
     username = flask.request.values['username']
@@ -24,6 +44,9 @@ def login():
     if hashed_pw != user['hashed_pw']:
         return flask.render_template('login.html')
 
+<<<<<<< HEAD
+    flask.session['user'] = username
+=======
     # SET COOKIE HERE??
     
     return flask.render_template('homepage.html',user=user)
@@ -34,6 +57,7 @@ def login():
 def sign_up():
     username = flask.request.values['username']
     users = get_users()
+>>>>>>> main
 
     # check to see if username is already taken; if so, reload page
     for user in users:
@@ -46,12 +70,21 @@ def sign_up():
     #flask.response.set_cookie('username', username)
     return flask.render_template('homepage.html')
 
+def get_user():
+    return flask.session.get('user', None)
+
+@app.route('/sign-out')
+def sign_out():
+    flask.session['user'] = None
+    #return flask.redirect('/')
+    return flask.render_template('index.html')
+
 @app.route('/create-new-story', methods=['POST', 'GET'])
 def create_new_story():
     # Grab title and text from HTML
     title = flask.request.values['title']
     text = flask.request.values['story-text']
-    author = 'user_name'
+    author = get_user()
     story_list = create_head_story()
 
     init_story_head(story_list, author, title, text)
@@ -63,7 +96,7 @@ def create_new_story():
 def create_new_child_story():
     parent_id = flask.request.values['parent-id']
     text = flask.request.values['story-text']
-    author = 'usered-named'
+    author = get_user()
 
     new_story = create_story()
 
@@ -91,9 +124,9 @@ def get_story_list(id):
     while datastore_story_entry['child_id'] != "" :
         datastore_story_entry = retrieve_story(datastore_story_entry['child_id'])
         stories.append(datastore_story_entry)
-    
-    return stories
 
+    return stories
+    
 
 # ---------- Actual Web Pages Start Here ----------
 @app.route('/')
