@@ -6,13 +6,13 @@
         <link rel="icon" href="{{ url_for('static',filename='images/U-Logo.png') }}" type="image/png"/>
         <link rel="stylesheet" href="{{ url_for('static',filename='styles/login-signup-base.css') }}">
     </head>
-    
+
     <body>
         <div id="body">
             <div class="overlay">
                 <div class="form-section">
                     <h3>Log in</h3>
-                    <form  method="post" action="/login"  onsubmit="return isEmptyAndWarn()">
+                    <form method="post" action="/login" onsubmit="return isEmptyAndWarn()">
                         <div class="form-input">
                             <input type="text" id="username" name="username" placeholder="Username" required="true" autofocus >
                         </div>

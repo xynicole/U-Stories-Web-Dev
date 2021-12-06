@@ -45,7 +45,7 @@
                 <input type="hidden" name="parent-id" value="{{ story_list[0].key.name }}" />
                 <input type="hidden" id="page-name" value="append" />
                 <div id="submit-story">
-                    <input type="submit" value="Add to Story" class="btn btn-outline-warning btn-lg" onclick="if(!checkWithoutWarn()){location.href='/p/homepage.html';}">
+                    <input type="submit" value="Add to Story" class="btn btn-outline-warning btn-lg" onclick="if(!checkWithoutWarn()){location.href='/p/confirm-receive-story?id={{ story_list[0].key.name }}';}">
                 </div>
             </div>
         </form>
