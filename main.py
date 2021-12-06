@@ -24,6 +24,25 @@ def sign_up():
     #flask.response.set_cookie('username', username)
     return flask.render_template('homepage.html')
 
+@app.route('/login', methods=['POST', 'GET'])
+def login():
+    username = flask.request.values['username']
+    user = lookup_user(username)
+
+    # check to see that username exists
+    if user == None:
+        return flask.render_template('login.html')
+
+    hashed_pw = sha256(flask.request.values['password']).hexdigest()
+
+    # check to see that passwords match
+    if hashed_pw != user['hashed_pw']:
+        return flask.render_template('login.html')
+
+    # SET COOKIE HERE??
+
+    return flask.render_template('homepage.html')
+
 @app.route('/create-new-story', methods=['POST', 'GET'])
 def create_new_story():
     # Grab title and text from HTML

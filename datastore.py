@@ -23,9 +23,14 @@ def create_user(username, hashed_pw):
     client = get_client()
     key = client.key('user', username)
     user = datastore.Entity(key)
-    user['username'] = username    
+    user['username'] = username
     user['hashed_pw'] = hashed_pw
     client.put(user)
+
+def lookup_user(username):
+    client = get_client()
+    user = client.query(kind='user', username)
+    return user
 
 def get_stories():
     story_list = []
