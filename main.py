@@ -128,6 +128,10 @@ def get_story_list(id):
 def root():
     return flask.render_template('index.html')
 
+@app.route('/p/homepage.html')
+def root():
+    return flask.render_template('homepage.html', username=get_user())
+
 @app.route('/p/write-story.html', methods=['POST', 'GET'])
 def write_story():
     return flask.render_template('write-story.html', username=get_user())
