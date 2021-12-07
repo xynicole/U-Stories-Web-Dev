@@ -11,7 +11,7 @@
 {% endblock %}
 
 {% block content %}
-    
+
     <div id="all-container">
         <form method="post" action="/create-new-story" onsubmit="return checkAndWarn()">
             <input type="hidden" id="page-name" value="write"></input>
@@ -23,7 +23,7 @@
                 <textarea name="story-text" id="story-text" maxlength="1500"></textarea>
                 <h2>Size: <span id="word-count">-</span> / 1500</h2>
                 <div id="submit-story">
-                    <input type="submit" value="Submit Story" class="btn btn-outline-warning btn-lg" onclick="if(!checkWithoutWarn()){location.href='/p/homepage.html';}">
+                    <input type="submit" style="margin-top:20px;margin-bottom:20px" value="Submit Story" class="btn btn-outline-warning btn-lg" onclick="if(!checkWithoutWarn()){location.href='/p/homepage.html';}">
                 </div>
             </div>
         </form>
