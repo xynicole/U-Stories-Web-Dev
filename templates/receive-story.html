@@ -32,6 +32,7 @@
                     <tr>
                         <td class="StoryAuthor">{{ story['author'] }}</td>
                         <td class="StoryText">{{ story['text'] }}</td>
+                        <td class="Storytime">{{ story['time'].strftime("%Y-%m-%d %H:%M") }}</td>
                     </tr>
                 </table>
         {% else %}
