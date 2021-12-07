@@ -11,10 +11,20 @@ app.secret_key = "homiez"
 
 @app.route('/delete-stories')
 def delete():
-    parent_id = flask.request.values['parent_name']
+    parent_name = flask.request.values['parent_name']
 
-    delete_stories(parent_id)
+    delete_stories(parent_name)
     return receive_story()
+
+@app.route('/stop-story')
+def stop():
+    parent_name = flask.request.values['parent_name']
+
+    stop_story(parent_name)
+
+    stories = get_story_list(parent_name)
+
+    return flask.render_template('confirm-receive-story.html', story_list=stories, username = get_user())
 
 @app.route('/sign-up', methods=['POST', 'GET'])
 def sign_up():
@@ -83,9 +93,13 @@ def create_new_child_story():
     text = flask.request.values['story-text']
     author = get_user()
 
-    new_story = create_story()
-
     parent_story = retrieve_head_story(parent_id)
+
+    if parent_story["is_finished"] :
+        stories = get_story_list(parent_id)
+        return flask.render_template('confirm-receive-story.html', story_list=stories, username = get_user())
+
+    new_story = create_story()
 
     while parent_story['child_id'] != "" :
         parent_story = retrieve_story(parent_story['child_id'])

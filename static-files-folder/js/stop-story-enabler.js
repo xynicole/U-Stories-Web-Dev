@@ -2,6 +2,7 @@ let stopper = document.getElementById("stopper");
 let confirmer = document.getElementById("confirm-stop");
 let author = document.getElementById("author");
 let username = document.getElementById("user");
+let isFinished = document.getElementById("is-finished");
 let hider1 = document.getElementById("hider-if-stopped1");
 let hider2 = document.getElementById("hider-if-stopped2");
 let deleteInit = document.getElementById("init-delete");
@@ -12,6 +13,9 @@ function stopAllower() {
     if (username.innerText == author.innerText) {
         stopper.removeAttribute("hidden");
         deleteInit.removeAttribute("hidden");
+    }
+    if (isFinished.innerText == "True") {
+        hider();
     }
 }
 
@@ -24,6 +28,6 @@ function unhideConfirmDelete() {
 }
 
 function hider() {
-    hider1.style.display = "none";
-    hider2.style.display = "none";
+    hider1.remove();
+    hider2.remove();
 }
