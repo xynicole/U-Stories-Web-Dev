@@ -23,7 +23,7 @@ def sign_up():
 
     create_user(username, hashed_pw)
     flask.session['user'] = username
-    return flask.render_template('homepage.html', username=get_user())
+    return flask.render_template('homepage.html')
 
 @app.route('/login', methods=['POST', 'GET'])
 def login():
@@ -100,7 +100,7 @@ def get_story_list(id):
         stories.append(datastore_story_entry)
 
     return stories
-    
+
 
 # ---------- Actual Web Pages Start Here ----------
 @app.route('/')
