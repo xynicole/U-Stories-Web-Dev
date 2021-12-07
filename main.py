@@ -2,8 +2,7 @@ import flask
 
 from random import randint
 from hashlib import sha256
-from datastore import*
-#from datastore import get_users,lookup_user, create_user, create_story, create_head_story, update_entries, retrieve_head_story, retrieve_story, init_story_head, init_story_child, get_head_stories
+from datastore import *
 from story_object import StoryEntry
 
 app = flask.Flask(__name__)
@@ -132,6 +131,19 @@ def root():
 @app.route('/p/write-story.html', methods=['POST', 'GET'])
 def write_story():
     return flask.render_template('write-story.html', username=get_user())
+
+@app.route('/p/user-stories.html', methods=['POST', 'GET'])
+def user_stories():
+    user = get_user()
+    stories = get_head_stories()
+
+    user_story_list = []
+
+    for story in stories:
+        if story['author'] == user:
+            user_story_list.append(story)
+
+    return flask.render_template('receive-story.html', story_list=user_story_list, username=get_user())
 
 @app.route('/p/receive-story.html', methods=['POST', 'GET'])
 def receive_story():

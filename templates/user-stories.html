@@ -1,0 +1,41 @@
+{% extends '_base.html' %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{{ url_for('static',filename='styles/receive-story.css') }}">
+{% endblock %}
+
+{% block navbuttons %}
+    <button type="button" class="header" onclick="location.href='/p/homepage.html';">Back to Homepage</button>
+{% endblock %}
+
+{% block content %}
+    <div id="all-container">
+        {% for story in story_list %}
+                <table id="story-head" onclick="location.href='/p/confirm-receive-story.html?id={{ story.key.name }}';">
+                    <colgroup>
+                        <col style='width: 20%;'>
+                        <col style='width: 80%;'>
+                    </colgroup>
+                    <tr>
+                        <th class="StoryTitle" colspan="2">{{ story['title'] }}</th>
+                    </tr>
+                    <tr>
+                        <td class="StoryAuthor">{{ story['author'] }}</td>
+                        <td class="StoryText">{{ story['text'] }}</td>
+                        <td class="Storytime">{{ story['time'].strftime("%m/%d/%y") }}</td>
+                    </tr>
+                </table>
+        {% else %}
+        <!-- This should only happen if there are no stories -->
+            <table>
+                <tr>
+                    <td>
+                        Looks like there's nothing to show! That's probably an issue...
+                    </td>
+                </tr>
+            </table>
+        {% endfor %}
+
+    </div>
+
+{% endblock %}
