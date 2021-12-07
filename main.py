@@ -9,6 +9,23 @@ from story_object import StoryEntry
 app = flask.Flask(__name__)
 app.secret_key = "homiez"
 
+@app.route('/delete-stories')
+def delete():
+    parent_name = flask.request.values['parent_name']
+
+    delete_stories(parent_name)
+    return receive_story()
+
+@app.route('/stop-story')
+def stop():
+    parent_name = flask.request.values['parent_name']
+
+    stop_story(parent_name)
+
+    stories = get_story_list(parent_name)
+
+    return flask.render_template('confirm-receive-story.html', story_list=stories, username = get_user())
+
 @app.route('/sign-up', methods=['POST', 'GET'])
 def sign_up():
     username = flask.request.values['username']
@@ -29,7 +46,6 @@ def sign_up():
 def login():
     username = flask.request.values['username']
     user = lookup_user(username)
-    
 
     # check to see that username exists
     if user == None:
@@ -77,9 +93,13 @@ def create_new_child_story():
     text = flask.request.values['story-text']
     author = get_user()
 
-    new_story = create_story()
-
     parent_story = retrieve_head_story(parent_id)
+
+    if parent_story["is_finished"] :
+        stories = get_story_list(parent_id)
+        return flask.render_template('confirm-receive-story.html', story_list=stories, username = get_user())
+
+    new_story = create_story()
 
     while parent_story['child_id'] != "" :
         parent_story = retrieve_story(parent_story['child_id'])
@@ -123,6 +143,7 @@ def receive_story():
 
     # grab the id of a random story from the list of stories
     stories_list = list(stories)
+    
     random_story_idx = randint(0, len(stories_list)-1)
     random_story_id = stories_list[random_story_idx].key.name
 
