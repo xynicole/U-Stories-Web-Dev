@@ -22,8 +22,8 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         {% block styles %}{% endblock %}
     </head>
-    
-    
+
+
     <body {% block onload %}{% endblock %}>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container-fluid">
@@ -43,16 +43,17 @@
                                 {{ username }}
                             </a>
                             <div class="dropdown-menu"  id ="dropdown-menu"  aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="/p/index.html">Log out</a>
+                                <a class="dropdown-item" href="/p/index.html">My stories</a>
+                                <a class="dropdown-item" href="/sign-out">Log out</a>
                             </div>
-                        </li>  
+                        </li>
                     </ul>
                 </div>
             </div>
         </nav>
 
-            
-            
+
+
             <section>
 
                 <div class="bulk">
@@ -60,7 +61,7 @@
                         {% block content %}{% endblock %}
                     </div>
                 </div>
-                
+
             </section>
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
