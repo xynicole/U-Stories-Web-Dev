@@ -96,3 +96,13 @@ def init_story_child(new_story, parent_story, author, text):
     new_story['parent_id'] = parent_story.key.id_or_name
     new_story['child_id'] = ""
     parent_story['child_id'] = new_story.key.id_or_name
+
+def delete_stories(parent_id):
+    client = get_client()
+
+    story = retrieve_head_story(parent_id)
+    while story['child_id'] != "":
+        next_name = story['child_id']
+        client.delete(story)
+        story = retrieve_story(next_name)
+    client.delete(story)

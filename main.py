@@ -9,6 +9,13 @@ from story_object import StoryEntry
 app = flask.Flask(__name__)
 app.secret_key = "homiez"
 
+@app.route('/delete-stories')
+def delete():
+    parent_id = flask.request.values['parent_name']
+
+    delete_stories(parent_id)
+    return receive_story()
+
 @app.route('/sign-up', methods=['POST', 'GET'])
 def sign_up():
     username = flask.request.values['username']
@@ -29,7 +36,6 @@ def sign_up():
 def login():
     username = flask.request.values['username']
     user = lookup_user(username)
-    
 
     # check to see that username exists
     if user == None:
@@ -123,6 +129,7 @@ def receive_story():
 
     # grab the id of a random story from the list of stories
     stories_list = list(stories)
+    
     random_story_idx = randint(0, len(stories_list)-1)
     random_story_id = stories_list[random_story_idx].key.name
 
