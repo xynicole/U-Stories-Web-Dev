@@ -30,6 +30,9 @@
                         <td>
                             {{ story['text'] }}
                         </td>
+                        <td>
+                            {{ story['time'].strftime("%Y-%m-%d %H:%M") }}
+                        </td>
                     </tr>
                 {% endfor %}
             </table>
