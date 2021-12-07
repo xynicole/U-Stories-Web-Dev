@@ -3,7 +3,7 @@
     height: 100vh;
     background: url(../images/story.jpeg) no-repeat 0px 0px;
     background-size: cover;
-    background-attachment: scroll;
+    background-attachment: fixed;
     background-position: center center;
 }
 
@@ -34,9 +34,8 @@ body {
     height: 100%;
     left: 0;
     top: 0;
-    background: linear-gradient(to right, rgba(0, 0, 0, 0.38), rgba(0, 0, 0, 0.44));
+    background: rgb(26, 25, 25, 0.7);
     content: "";
-    opacity: .7;
   }
 .ptb-100 {
       padding: 0px 0px 50px;
