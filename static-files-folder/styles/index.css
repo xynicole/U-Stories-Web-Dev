@@ -61,7 +61,8 @@ body {
 .container h3 {
     color: #ffffff;
     font-size: 20px;
-    margin-top: 10%;
+    position: absolute;
+    top: 10%;
     margin-bottom: 20px;
 }
 
