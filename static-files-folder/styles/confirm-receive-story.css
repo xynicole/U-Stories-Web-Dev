@@ -36,6 +36,17 @@ body {
     width: 10vw;
 }
 
+#delete-story {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#delete-story a {
+    width: 10vw;
+}
+
 #story-table {
     font-size: 24px;
     margin-top: 3vh;
