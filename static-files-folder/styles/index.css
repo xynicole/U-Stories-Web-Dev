@@ -54,12 +54,14 @@ body {
 .container h1 {
     color: #e98f08;
     font-size: 40px;
+    margin-top: 20px;
     margin-bottom: 20px;
 }
 
 .container h3 {
     color: #ffffff;
     font-size: 20px;
+    margin-top: 10%;
     margin-bottom: 20px;
 }
 
@@ -84,6 +86,7 @@ body {
       padding: 8px 35px;
       font-weight:600;
       transition: all 0.3s ease 0s;
+      text-transform: uppercase;
       -webkit-transition: all 0.3s ease 0s;
       -moz-transition: all 0.3s ease 0s;
       font-size:12px;
