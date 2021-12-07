@@ -44,7 +44,7 @@ body {
 .container{
       height: 100%;
       position: absolute;
-      width: 75%;
+      width: 100%;
       margin: auto;
 }
 
