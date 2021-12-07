@@ -67,8 +67,8 @@ def get_user():
 @app.route('/sign-out')
 def sign_out():
     flask.session['user'] = None
-    #return flask.redirect('/')
-    return flask.render_template('index.html')
+    return flask.redirect('/')
+    #return flask.render_template('index.html')
 
 @app.route('/create-new-story', methods=['POST', 'GET'])
 def create_new_story():
