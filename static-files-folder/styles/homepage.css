@@ -3,7 +3,7 @@ body {
     background: rgb(26, 25, 25, 0.7);
 }
 
-.body {
+div.body {
   display: flex;
   align-items: center;
 }
