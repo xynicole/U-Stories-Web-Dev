@@ -143,7 +143,7 @@ def user_stories():
         if story['author'] == user:
             user_story_list.append(story)
 
-    return flask.render_template('receive-story.html', story_list=user_story_list, username=get_user())
+    return flask.render_template('user-stories.html', story_list=user_story_list, username=get_user())
 
 @app.route('/p/receive-story.html', methods=['POST', 'GET'])
 def receive_story():
