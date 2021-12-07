@@ -51,18 +51,14 @@ def login():
     if user == None:
         return flask.render_template('login.html')
 
-    hashed_pw = sha256((flask.request.values['password']).encode('utf-8')).hexdigest()
-    
+    hashed_pw = sha256(flask.request.values['password'].encode('utf-8')).hexdigest()
+
     # check to see that passwords match
     if hashed_pw != user['hashed_pw']:
         return flask.render_template('login.html')
 
     flask.session['user'] = username
 
-    hashed_pw = sha256(flask.request.values['password'].encode('utf-8')).hexdigest()
-
-    create_user(username, hashed_pw)
-    #flask.response.set_cookie('username', username)
     return flask.render_template('homepage.html', username = username)
 
 def get_user():
@@ -125,7 +121,7 @@ def get_story_list(id):
         stories.append(datastore_story_entry)
 
     return stories
-    
+
 
 # ---------- Actual Web Pages Start Here ----------
 @app.route('/')
@@ -143,7 +139,7 @@ def receive_story():
 
     # grab the id of a random story from the list of stories
     stories_list = list(stories)
-    
+
     random_story_idx = randint(0, len(stories_list)-1)
     random_story_id = stories_list[random_story_idx].key.name
 
@@ -152,7 +148,7 @@ def receive_story():
 @app.route('/p/append-story.html', methods=['POST', 'GET'])
 def append_story():
     id = flask.request.values['id']
-    
+
     stories = get_story_list(id)
 
     return flask.render_template('append-story.html', story_list=stories, username=get_user())
@@ -160,7 +156,7 @@ def append_story():
 @app.route('/p/confirm-receive-story.html', methods=['POST', 'GET'])
 def confirm_receive_story():
     id = flask.request.values['id']
-    
+
     stories = get_story_list(id)
 
     return flask.render_template('confirm-receive-story.html', story_list=stories, username=get_user())
