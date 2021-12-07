@@ -47,7 +47,7 @@ def login():
 
     create_user(username, hashed_pw)
     #flask.response.set_cookie('username', username)
-    return flask.render_template('homepage.html')
+    return flask.render_template('homepage.html', username = username)
 
 def get_user():
     return flask.session.get('user', None)
@@ -69,7 +69,7 @@ def create_new_story():
     init_story_head(story_list, author, title, text)
 
     update_entries(story_list)
-    return flask.render_template('homepage.html')
+    return flask.render_template('homepage.html', username = get_user())
 
 @app.route('/create-new-child-story', methods=['POST', 'GET'])
 def create_new_child_story():
@@ -94,7 +94,7 @@ def create_new_child_story():
 
     stories = get_story_list(parent_id)
 
-    return flask.render_template('confirm-receive-story.html', story_list=stories)
+    return flask.render_template('confirm-receive-story.html', story_list=stories, username = get_user())
 
 def get_story_list(id):
     datastore_story_entry = retrieve_head_story(id)
@@ -115,7 +115,7 @@ def root():
 
 @app.route('/p/write-story.html', methods=['POST', 'GET'])
 def write_story():
-    return flask.render_template('write-story.html')
+    return flask.render_template('write-story.html', username=get_user())
 
 @app.route('/p/receive-story.html', methods=['POST', 'GET'])
 def receive_story():
@@ -126,7 +126,7 @@ def receive_story():
     random_story_idx = randint(0, len(stories_list)-1)
     random_story_id = stories_list[random_story_idx].key.name
 
-    return flask.render_template('receive-story.html', story_list=stories, random_story_id=random_story_id)
+    return flask.render_template('receive-story.html', story_list=stories, random_story_id=random_story_id, username=get_user())
 
 @app.route('/p/append-story.html', methods=['POST', 'GET'])
 def append_story():
@@ -134,7 +134,7 @@ def append_story():
     
     stories = get_story_list(id)
 
-    return flask.render_template('append-story.html', story_list=stories)
+    return flask.render_template('append-story.html', story_list=stories, username=get_user())
 
 @app.route('/p/confirm-receive-story.html', methods=['POST', 'GET'])
 def confirm_receive_story():
@@ -142,7 +142,7 @@ def confirm_receive_story():
     
     stories = get_story_list(id)
 
-    return flask.render_template('confirm-receive-story.html', story_list=stories)
+    return flask.render_template('confirm-receive-story.html', story_list=stories, username=get_user())
 
 
 # Any page that is not specified will default here with no functionality
