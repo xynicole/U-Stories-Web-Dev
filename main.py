@@ -2,12 +2,28 @@ import flask
 
 from random import randint
 from hashlib import sha256
-from datastore import*
-#from datastore import get_users,lookup_user, create_user, create_story, create_head_story, update_entries, retrieve_head_story, retrieve_story, init_story_head, init_story_child, get_head_stories
+from datastore import *
 from story_object import StoryEntry
 
 app = flask.Flask(__name__)
 app.secret_key = "homiez"
+
+@app.route('/delete-stories')
+def delete():
+    parent_name = flask.request.values['parent_name']
+
+    delete_stories(parent_name)
+    return receive_story()
+
+@app.route('/stop-story')
+def stop():
+    parent_name = flask.request.values['parent_name']
+
+    stop_story(parent_name)
+
+    stories = get_story_list(parent_name)
+
+    return flask.render_template('confirm-receive-story.html', story_list=stories, username = get_user())
 
 @app.route('/sign-up', methods=['POST', 'GET'])
 def sign_up():
@@ -23,30 +39,25 @@ def sign_up():
 
     create_user(username, hashed_pw)
     flask.session['user'] = username
-    return flask.render_template('homepage.html', username=get_user())
+    return flask.render_template('homepage.html')
 
 @app.route('/login', methods=['POST', 'GET'])
 def login():
     username = flask.request.values['username']
     user = lookup_user(username)
-    
 
     # check to see that username exists
     if user == None:
         return flask.render_template('login.html')
 
-    hashed_pw = sha256((flask.request.values['password']).encode('utf-8')).hexdigest()
-    
+    hashed_pw = sha256(flask.request.values['password'].encode('utf-8')).hexdigest()
+
     # check to see that passwords match
     if hashed_pw != user['hashed_pw']:
         return flask.render_template('login.html')
 
     flask.session['user'] = username
 
-    hashed_pw = sha256(flask.request.values['password'].encode('utf-8')).hexdigest()
-
-    create_user(username, hashed_pw)
-    #flask.response.set_cookie('username', username)
     return flask.render_template('homepage.html', username = username)
 
 def get_user():
@@ -55,8 +66,8 @@ def get_user():
 @app.route('/sign-out')
 def sign_out():
     flask.session['user'] = None
-    #return flask.redirect('/')
-    return flask.render_template('index.html')
+    return flask.redirect('/')
+    #return flask.render_template('index.html')
 
 @app.route('/create-new-story', methods=['POST', 'GET'])
 def create_new_story():
@@ -77,9 +88,13 @@ def create_new_child_story():
     text = flask.request.values['story-text']
     author = get_user()
 
-    new_story = create_story()
-
     parent_story = retrieve_head_story(parent_id)
+
+    if parent_story["is_finished"] :
+        stories = get_story_list(parent_id)
+        return flask.render_template('confirm-receive-story.html', story_list=stories, username = get_user())
+
+    new_story = create_story()
 
     while parent_story['child_id'] != "" :
         parent_story = retrieve_story(parent_story['child_id'])
@@ -105,7 +120,7 @@ def get_story_list(id):
         stories.append(datastore_story_entry)
 
     return stories
-    
+
 
 # ---------- Actual Web Pages Start Here ----------
 @app.route('/')
@@ -113,9 +128,26 @@ def get_story_list(id):
 def root():
     return flask.render_template('index.html')
 
+@app.route('/p/homepage.html')
+def homepage():
+    return flask.render_template('homepage.html', username=get_user())
+
 @app.route('/p/write-story.html', methods=['POST', 'GET'])
 def write_story():
     return flask.render_template('write-story.html', username=get_user())
+
+@app.route('/p/user-stories.html', methods=['POST', 'GET'])
+def user_stories():
+    user = get_user()
+    stories = get_head_stories()
+
+    user_story_list = []
+
+    for story in stories:
+        if story['author'] == user:
+            user_story_list.append(story)
+
+    return flask.render_template('user-stories.html', story_list=user_story_list, username=get_user())
 
 @app.route('/p/receive-story.html', methods=['POST', 'GET'])
 def receive_story():
@@ -123,6 +155,7 @@ def receive_story():
 
     # grab the id of a random story from the list of stories
     stories_list = list(stories)
+
     random_story_idx = randint(0, len(stories_list)-1)
     random_story_id = stories_list[random_story_idx].key.name
 
@@ -131,7 +164,7 @@ def receive_story():
 @app.route('/p/append-story.html', methods=['POST', 'GET'])
 def append_story():
     id = flask.request.values['id']
-    
+
     stories = get_story_list(id)
 
     return flask.render_template('append-story.html', story_list=stories, username=get_user())
@@ -139,7 +172,7 @@ def append_story():
 @app.route('/p/confirm-receive-story.html', methods=['POST', 'GET'])
 def confirm_receive_story():
     id = flask.request.values['id']
-    
+
     stories = get_story_list(id)
 
     return flask.render_template('confirm-receive-story.html', story_list=stories, username=get_user())

@@ -3,7 +3,7 @@ html {
     height: 100vh;
     background: url(../images/story.jpeg) no-repeat 0px 0px;
     background-size: cover;
-    background-attachment: scroll;
+    background-attachment: fixed;
     background-position: center center;
 }
 

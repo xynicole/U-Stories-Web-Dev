@@ -1,11 +1,9 @@
-html {
-    background: rgb(39, 32, 27);
-}
 
 body {
-    height: 100vh;
-    background: rgb(39, 32, 27);
-    color: #fff
+    background: rgb(35, 35, 35, 0.7);
+    min-width: 100%;
+    min-height: 100%;
+    color: #fff;
 }
 
 #all-container {
