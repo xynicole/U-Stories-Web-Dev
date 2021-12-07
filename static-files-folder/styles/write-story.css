@@ -1,10 +1,7 @@
-html {
-    background: rgb(39, 32, 27);
-}
-
 body {
-    height: 100vh;
-    background: rgb(39, 32, 27);
+    background: rgb(35, 35, 35, 0.7);
+    min-width: 100%;
+    min-height: 100%;
     color: #fff;
 }
 
@@ -14,9 +11,9 @@ body {
     width: 87vw;
     height: 66vh;
     font-size: 24px;
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(44, 44, 44, 0.8);
     color: #fff;
-    border: none;
+    border: solid 1px whitesmoke;
     border-radius: 5px;
 }
 
@@ -46,9 +43,9 @@ body {
     width: 80vw;
     resize: none;
     font-size: 24px;
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(44, 44, 44, 0.8);
     color: #fff;
-    border: none;
+    border: solid 1px whitesmoke;
     border-radius: 5px;
 }
 
