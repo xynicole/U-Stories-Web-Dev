@@ -52,14 +52,14 @@
 
             <div id="hider-if-stopped1">
                 <div id="accept-story" draggable="true" ondragstart="drag(this.id,event);">
-                    <a class="btn btn-outline-warning btn-lg" href="/p/append-story.html?id={{ story_list[0].key.name }}" role="button">Accept</a>
+                    <a class="btn btn-outline-warning btn-lg" href="/p/append-story.html?id={{ story_list[0].key.name }}" role="button">Append</a>
                 </div>
             </div>
         </div>
         <p></p>
         <div id="hider-if-stopped2">
             <div id="end-story">
-                <p hidden id="is-finished">{{ story_list[0].is_finished }}</p>                
+                <p hidden id="is-finished">{{ story_list[0].is_finished }}</p>
                 <p hidden id="author">{{ story_list[0].author }}</p>
                 <p hidden id="user">{{ username }}</p>
                 <a hidden id="stopper" class="btn btn-outline-info btn-sm" role="button" onclick="unhideConfirmStop()">End Story</a>
