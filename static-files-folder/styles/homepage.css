@@ -3,9 +3,9 @@ body {
     background: rgb(26, 25, 25, 0.7);
 }
 
-div.body {
-  display: flex;
-  align-items: center;
+section {
+  margin-top: 50%;
+  margin-bottom: 50%;
 }
 
 div.container {
