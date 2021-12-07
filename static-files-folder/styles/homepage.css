@@ -3,9 +3,9 @@ body {
     background: rgb(26, 25, 25, 0.7);
 }
 
-section {
+/* section {
   margin: auto;
-}
+} */
 
 div.container {
     display: flex;

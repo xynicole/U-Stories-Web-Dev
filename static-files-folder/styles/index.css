@@ -34,7 +34,7 @@ body {
     height: 100%;
     left: 0;
     top: 0;
-    background: rgb(68, 67, 67);
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.38), rgba(0, 0, 0, 0.44));
     content: "";
     opacity: .7;
   }
@@ -64,7 +64,7 @@ body {
     color: #ffffff;
     font-size: 20px;
     margin-top: 15px;
-  
+
 }
 
 .container td {
@@ -180,5 +180,3 @@ body {
         transform: translateY(-2000px);
     }
 }
-
-
