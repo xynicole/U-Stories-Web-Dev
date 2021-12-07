@@ -109,7 +109,8 @@ def create_new_child_story():
 
     stories = get_story_list(parent_id)
 
-    return flask.render_template('confirm-receive-story.html', story_list=stories, username = get_user())
+    flask.render_template('confirm-receive-story.html', story_list=stories, username = get_user())
+    flask.redirect('/confirm-receive-story.html&id=' + parent_id)
 
 def get_story_list(id):
     datastore_story_entry = retrieve_head_story(id)
