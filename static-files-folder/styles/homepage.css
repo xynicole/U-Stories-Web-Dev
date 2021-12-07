@@ -4,8 +4,7 @@ body {
 }
 
 section {
-  margin-top: 50%;
-  margin-bottom: 50%;
+  margin: auto;
 }
 
 div.container {

@@ -129,7 +129,7 @@ def root():
     return flask.render_template('index.html')
 
 @app.route('/p/homepage.html')
-def root():
+def homepage():
     return flask.render_template('homepage.html', username=get_user())
 
 @app.route('/p/write-story.html', methods=['POST', 'GET'])
