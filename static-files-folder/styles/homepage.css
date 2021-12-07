@@ -10,16 +10,12 @@ body {
 div.container {
     display: flex;
     justify-content: center;
-    align-items: center;
-    flex-direction: column;
     width: 100%;
 }
 
 h1{
     color: rgb(255, 255, 255);
 }
-
-
 
 /* / starts /*/
 @media (max-width: 1080px) {
