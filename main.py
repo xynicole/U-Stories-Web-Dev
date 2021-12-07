@@ -2,12 +2,29 @@ import flask
 
 from random import randint
 from hashlib import sha256
-
-from datastore import get_users, create_user, create_story, create_head_story, update_entries, retrieve_head_story, retrieve_story, init_story_head, init_story_child, get_head_stories
+from datastore import*
+#from datastore import get_users,lookup_user, create_user, create_story, create_head_story, update_entries, retrieve_head_story, retrieve_story, init_story_head, init_story_child, get_head_stories
 from story_object import StoryEntry
 
 app = flask.Flask(__name__)
 app.secret_key = "homiez"
+
+@app.route('/delete-stories')
+def delete():
+    parent_name = flask.request.values['parent_name']
+
+    delete_stories(parent_name)
+    return receive_story()
+
+@app.route('/stop-story')
+def stop():
+    parent_name = flask.request.values['parent_name']
+
+    stop_story(parent_name)
+
+    stories = get_story_list(parent_name)
+
+    return flask.render_template('confirm-receive-story.html', story_list=stories, username = get_user())
 
 @app.route('/sign-up', methods=['POST', 'GET'])
 def sign_up():
@@ -42,7 +59,7 @@ def login():
 
     flask.session['user'] = username
 
-    return flask.render_template('homepage.html')
+    return flask.render_template('homepage.html', username = username)
 
 def get_user():
     return flask.session.get('user', None)
@@ -64,7 +81,7 @@ def create_new_story():
     init_story_head(story_list, author, title, text)
 
     update_entries(story_list)
-    return flask.render_template('homepage.html')
+    return flask.render_template('homepage.html', username = get_user())
 
 @app.route('/create-new-child-story', methods=['POST', 'GET'])
 def create_new_child_story():
@@ -72,9 +89,13 @@ def create_new_child_story():
     text = flask.request.values['story-text']
     author = get_user()
 
-    new_story = create_story()
-
     parent_story = retrieve_head_story(parent_id)
+
+    if parent_story["is_finished"] :
+        stories = get_story_list(parent_id)
+        return flask.render_template('confirm-receive-story.html', story_list=stories, username = get_user())
+
+    new_story = create_story()
 
     while parent_story['child_id'] != "" :
         parent_story = retrieve_story(parent_story['child_id'])
@@ -89,7 +110,7 @@ def create_new_child_story():
 
     stories = get_story_list(parent_id)
 
-    return flask.render_template('confirm-receive-story.html', story_list=stories)
+    return flask.render_template('confirm-receive-story.html', story_list=stories, username = get_user())
 
 def get_story_list(id):
     datastore_story_entry = retrieve_head_story(id)
@@ -110,7 +131,7 @@ def root():
 
 @app.route('/p/write-story.html', methods=['POST', 'GET'])
 def write_story():
-    return flask.render_template('write-story.html')
+    return flask.render_template('write-story.html', username=get_user())
 
 @app.route('/p/receive-story.html', methods=['POST', 'GET'])
 def receive_story():
@@ -118,34 +139,27 @@ def receive_story():
 
     # grab the id of a random story from the list of stories
     stories_list = list(stories)
+
     random_story_idx = randint(0, len(stories_list)-1)
     random_story_id = stories_list[random_story_idx].key.name
 
-    return flask.render_template('receive-story.html', story_list=stories, random_story_id=random_story_id)
+    return flask.render_template('receive-story.html', story_list=stories, random_story_id=random_story_id, username=get_user())
 
 @app.route('/p/append-story.html', methods=['POST', 'GET'])
 def append_story():
     id = flask.request.values['id']
-    datastore_story_entry = retrieve_head_story(id)
-    stories = [datastore_story_entry]
 
-    while datastore_story_entry['child_id'] != "" :
-        datastore_story_entry = retrieve_story(datastore_story_entry['child_id'])
-        stories.append(datastore_story_entry)
+    stories = get_story_list(id)
 
-    return flask.render_template('append-story.html', story_list=stories)
+    return flask.render_template('append-story.html', story_list=stories, username=get_user())
 
 @app.route('/p/confirm-receive-story.html', methods=['POST', 'GET'])
 def confirm_receive_story():
     id = flask.request.values['id']
-    datastore_story_entry = retrieve_head_story(id)
-    stories = [datastore_story_entry]
 
-    while datastore_story_entry['child_id'] != "" :
-        datastore_story_entry = retrieve_story(datastore_story_entry['child_id'])
-        stories.append(datastore_story_entry)
+    stories = get_story_list(id)
 
-    return flask.render_template('confirm-receive-story.html', story_list=stories)
+    return flask.render_template('confirm-receive-story.html', story_list=stories, username=get_user())
 
 
 # Any page that is not specified will default here with no functionality

@@ -4,6 +4,10 @@
     <link rel="stylesheet" href="{{ url_for('static',filename='styles/confirm-receive-story.css') }}">
 {% endblock %}
 
+{% block onload %}
+    onload="stopAllower()"
+{% endblock %}
+
 {% block navbuttons %}
     <button type="button" class="header" onclick="location.href='/p/homepage.html';">Back to Homepage</button>
 {% endblock %}
@@ -30,6 +34,9 @@
                         <td>
                             {{ story['text'] }}
                         </td>
+                        <td>
+                            {{ story['time'].strftime("%m/%d/%y") }}
+                        </td>
                     </tr>
                 {% endfor %}
             </table>
@@ -43,10 +50,34 @@
                 <a class="btn btn-outline-warning btn-lg" href="/p/receive-story.html" role="button">Back</a>
             </div>
 
-            <div id="accept-story" draggable="true" ondragstart="drag(this.id,event);">
-                <a class="btn btn-outline-warning btn-lg" href="/p/append-story.html?id={{ story_list[0].key.name }}" role="button">Accept</a>
+            <div id="hider-if-stopped1">
+                <div id="accept-story" draggable="true" ondragstart="drag(this.id,event);">
+                    <a class="btn btn-outline-warning btn-lg" href="/p/append-story.html?id={{ story_list[0].key.name }}" role="button">Accept</a>
+                </div>
+            </div>
+        </div>        
+        <p></p>
+        <div id="hider-if-stopped2">
+            <div id="end-story">
+                <p hidden id="is-finished">{{ story_list[0].is_finished }}</p>                
+                <p hidden id="author">{{ story_list[0].author }}</p>
+                <p hidden id="user">{{ username }}</p>
+                <a hidden id="stopper" class="btn btn-outline-info btn-sm" role="button" onclick="unhideConfirmStop()">Force Stop Story</a>
+                <br>
+                <a hidden id="confirm-stop" class="btn btn-outline-danger btn-sm" href="/stop-story?parent_name={{ story_list[0].key.name }}" role="button">Confirm Stop</a>
             </div>
         </div>
-        <p></p>
+        <br><br>
+        <div id="delete-story">
+            <a hidden id="init-delete" class="btn btn-outline-info btn-sm" role="button" onclick="unhideConfirmDelete()">Delete Story</a>
+                <br>
+            <a hidden id="confirm-delete" class="btn btn-outline-danger btn-sm" href="/delete-stories?parent_name={{ story_list[0].key.name }}" role="button">Confirm Delete</a>
+        </div>
+        
+
+        
     </div>
+
+    <script type="text/javascript" src="{{ url_for('static',filename='js/stop-story-enabler.js') }}"></script>
+
 {% endblock %}
