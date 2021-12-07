@@ -76,8 +76,6 @@ body {
 
 
 .container a {
-      background: #ffffff none repeat scroll 0 0;
-      color: #555;
       display: inline-block;
       margin-top: 16px;
       padding: 8px 35px;
@@ -88,10 +86,7 @@ body {
       -moz-transition: all 0.3s ease 0s;
       font-size:12px;
 }
-.container a:hover {
-    background: #e98f08;
-    color: #fff;
-}
+
 
 
 /* / starts /*/

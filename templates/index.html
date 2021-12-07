@@ -5,6 +5,7 @@
         <title>Welcome to U Stories!</title>
         <link rel="icon" href="{{ url_for('static',filename='images/U-Logo.png') }}" type="image/png"/>
         <link rel="stylesheet" href="{{ url_for('static',filename='styles/index.css') }}">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     </head>
     
     <body>
@@ -25,8 +26,8 @@
                         </table>
                         <br>
                         <p>There is no real objective besides creative freedom and experimenting with new writing styles, it's all in good fun.</p>
-                        <a href="/p/login.html" >Log in</a> 
-                        <a href="/p/sign-up.html" >Sign up</a>
+                        <a class="btn btn-outline-warning btn-lg" href="/p/login.html" role="button">Log in</a>
+                        <a class="btn btn-outline-warning btn-lg" href="/p/sign-up.html" role="button">Sign up</a>
                     </div>
                 </div>  			
             </div>
