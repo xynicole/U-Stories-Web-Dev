@@ -45,6 +45,7 @@ body {
       height: 100%;
       position: absolute;
       width: 75%;
+      margin: auto;
 }
 
 .container h1 {
